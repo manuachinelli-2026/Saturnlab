@@ -1,0 +1,11 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Saturn AI app icon">
+  <defs>
+    <clipPath id="saturn-front-icon"><rect x="0" y="63" width="120" height="57"></rect></clipPath>
+  </defs>
+  <rect x="0" y="0" width="120" height="120" rx="26" fill="#1E33D6"></rect>
+  <ellipse cx="60" cy="63" rx="42" ry="12.5" fill="none" stroke="#F2B53B" stroke-width="6" transform="rotate(-24 60 63)"></ellipse>
+  <circle cx="60" cy="63" r="23" fill="#F6F1E7"></circle>
+  <g clip-path="url(#saturn-front-icon)">
+    <ellipse cx="60" cy="63" rx="42" ry="12.5" fill="none" stroke="#F2B53B" stroke-width="6" transform="rotate(-24 60 63)"></ellipse>
+  </g>
+</svg>

@@ -1,706 +1,172 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saturnlab — Aprende AI. Aplicala hoy. Cambiá cómo trabajás.</title>
-  <meta name="description" content="Plataforma de formación en AI para profesionales y empresas de habla hispana. Webinars, cursos grabados y en vivo.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #080808;
-      --surface: #0f0f0f;
-      --border: #1c1c1c;
-      --text: #EFEFEB;
-      --muted: #555;
-      --accent: #DEFF00;
-      --accent-glow: rgba(222,255,0,0.08);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* grain */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.03;
-      pointer-events: none;
-      z-index: 999;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.375rem 3rem;
-      background: rgba(8,8,8,0.88);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 1.0625rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--text); text-decoration: none;
-    }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; }
-    .nav-links a {
-      color: var(--muted); text-decoration: none;
-      font-size: 0.8125rem; letter-spacing: 0.04em;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta {
-      background: var(--accent) !important;
-      color: var(--bg) !important;
-      padding: 0.5rem 1.25rem;
-      font-family: 'Syne', sans-serif;
-      font-weight: 700 !important;
-      font-size: 0.75rem !important;
-      letter-spacing: 0.08em !important;
-      text-transform: uppercase;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 55fr 45fr;
-      align-items: center;
-      padding: 9rem 3rem 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-content { position: relative; z-index: 2; }
-
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.75rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6875rem; letter-spacing: 0.18em;
-      color: var(--accent); text-transform: uppercase;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.1s ease forwards;
-    }
-    .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
-
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(3.25rem, 6.5vw, 6rem);
-      line-height: 0.98;
-      letter-spacing: -0.025em;
-      margin-bottom: 1.75rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s ease forwards;
-    }
-    h1 em { font-style: normal; color: var(--accent); }
-
-    .hero-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 400px;
-      margin-bottom: 2.75rem;
-      line-height: 1.75;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.35s ease forwards;
-    }
-
-    .hero-actions {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.5s ease forwards;
-    }
-
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--accent); color: var(--bg);
-      padding: 0.9375rem 1.875rem;
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 0.8125rem; letter-spacing: 0.07em; text-transform: uppercase;
-      text-decoration: none; border: none; cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .btn-primary:hover { background: #fff; transform: translateY(-2px); }
-
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: transparent; color: var(--text);
-      padding: 0.9375rem 1.875rem;
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 0.8125rem; letter-spacing: 0.07em; text-transform: uppercase;
-      text-decoration: none; border: 1px solid var(--border);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* Saturn visual */
-    .hero-visual {
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0;
-      animation: fadeIn 1.2s 0.4s ease forwards;
-    }
-    .saturn-wrap {
-      position: relative;
-      width: min(480px, 100%);
-      aspect-ratio: 1;
-    }
-    .saturn-wrap svg { width: 100%; height: 100%; }
-
-    @keyframes ringRotate {
-      from { transform: rotateZ(0deg); }
-      to { transform: rotateZ(360deg); }
-    }
-    @keyframes floatY {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
-
-    /* ── TICKER ── */
-    .ticker {
-      overflow: hidden;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 0.875rem 0;
-      background: var(--surface);
-    }
-    .ticker-track {
-      display: flex; gap: 3.5rem;
-      width: max-content;
-      animation: scroll 30s linear infinite;
-    }
-    .ticker-track:hover { animation-play-state: paused; }
-    .ticker-item {
-      display: flex; align-items: center; gap: 1.5rem;
-      white-space: nowrap;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted);
-    }
-    .ticker-item .dot { color: var(--accent); font-size: 0.875rem; }
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    /* ── SHARED SECTION ── */
-    .sec { padding: 7rem 3rem; }
-    .sec-inner { max-width: 1200px; margin: 0 auto; }
-    .sec-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent);
-      display: flex; align-items: center; gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-    .sec-label::after { content: ''; width: 32px; height: 1px; background: var(--accent); }
-    h2 {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(2rem, 4vw, 3.75rem);
-      letter-spacing: -0.025em; line-height: 1.0;
-    }
-    h2 em { font-style: normal; color: var(--accent); }
-
-    /* ── COURSES ── */
-    .courses-head {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 3.5rem; gap: 2rem; flex-wrap: wrap;
-    }
-    .courses-note {
-      font-size: 0.9375rem; color: var(--muted);
-      max-width: 300px; line-height: 1.7;
-    }
-    .courses-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .course-card {
-      background: var(--bg);
-      padding: 2.75rem;
-      position: relative; overflow: hidden;
-      transition: background 0.35s;
-      cursor: default;
-    }
-    .course-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: var(--accent-glow);
-      opacity: 0; transition: opacity 0.35s;
-    }
-    .course-card:hover::before { opacity: 1; }
-    .course-card:hover .card-arrow { transform: translate(3px, -3px); color: var(--accent); }
-    .course-card:hover .card-num { color: var(--accent); }
-
-    .card-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 2rem;
-      transition: color 0.35s;
-    }
-    .card-title {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 1.375rem; line-height: 1.2;
-      letter-spacing: -0.01em; margin-bottom: 1rem;
-    }
-    .card-desc {
-      font-size: 0.9rem; color: var(--muted);
-      line-height: 1.75; margin-bottom: 2rem;
-    }
-    .card-footer { display: flex; align-items: center; justify-content: space-between; }
-    .card-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid rgba(222,255,0,0.25);
-      padding: 0.3rem 0.625rem;
-    }
-    .card-arrow {
-      font-size: 1.125rem; color: var(--muted);
-      transition: transform 0.3s, color 0.3s;
-      line-height: 1;
-    }
-
-    /* ── ENTERPRISE ── */
-    .ent-section {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .ent-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center;
-    }
-    .ent-desc { color: var(--muted); line-height: 1.8; margin: 1.5rem 0 2.5rem; font-size: 0.9375rem; }
-    .ent-items { display: flex; flex-direction: column; gap: 1.75rem; }
-    .ent-item { display: flex; gap: 1.25rem; align-items: flex-start; }
-    .ent-icon {
-      width: 38px; height: 38px;
-      border: 1px solid rgba(222,255,0,0.3);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; margin-top: 2px;
-    }
-    .ent-icon svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .ent-item-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.9375rem; margin-bottom: 0.25rem; }
-    .ent-item-text { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
-
-    /* ── FORMATS ── */
-    .formats-head { margin-bottom: 3.5rem; }
-    .formats-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .fmt-card {
-      background: var(--bg);
-      padding: 2.75rem;
-      position: relative; overflow: hidden;
-    }
-    .fmt-num {
-      position: absolute; top: 1.75rem; right: 2rem;
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 5rem; line-height: 1; letter-spacing: -0.04em;
-      color: rgba(255,255,255,0.03);
-      pointer-events: none; user-select: none;
-    }
-    .fmt-title {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 1.25rem; letter-spacing: -0.01em;
-      margin-bottom: 1rem;
-    }
-    .fmt-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.75rem; }
-    .fmt-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text);
-      background: var(--border);
-      padding: 0.3rem 0.75rem;
-      display: inline-block;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 3rem;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1.5rem;
-    }
-    .footer-brand {}
-    .footer-logo {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 1.0625rem; letter-spacing: 0.18em; text-transform: uppercase;
-    }
-    .footer-logo span { color: var(--accent); }
-    .footer-tag { font-size: 0.8125rem; color: var(--muted); margin-top: 0.25rem; }
-    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.625rem; }
-    .footer-links { display: flex; gap: 2rem; list-style: none; }
-    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.8125rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--text); }
-    .footer-copy {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.625rem; letter-spacing: 0.08em; color: var(--muted);
-    }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 960px) {
-      nav { padding: 1.25rem 1.5rem; }
-      .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; }
-      .hero-visual { order: -1; margin-bottom: 2rem; }
-      .saturn-wrap { width: min(320px, 80vw); }
-      .sec { padding: 5rem 1.5rem; }
-      .courses-grid { grid-template-columns: 1fr; }
-      .ent-inner { grid-template-columns: 1fr; gap: 3.5rem; }
-      .formats-grid { grid-template-columns: 1fr; }
-      footer { padding: 2.5rem 1.5rem; }
-      .footer-right { align-items: flex-start; }
-    }
-  </style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">Saturn<span>lab</span></a>
-  <ul class="nav-links">
-    <li><a href="#cursos">Cursos</a></li>
-    <li><a href="#enterprise">Enterprise</a></li>
-    <li><a href="#formatos">Formatos</a></li>
-    <li><a href="#enterprise" class="nav-cta">Para empresas</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-eyebrow">Plataforma de formación en AI</div>
-    <h1>Aprende AI.<br><em>Aplicala</em><br>hoy.</h1>
-    <p class="hero-sub">Cambiá cómo trabajás. Webinars, cursos grabados y en vivo para profesionales y empresas de habla hispana.</p>
-    <div class="hero-actions">
-      <a href="#cursos" class="btn-primary">Ver cursos →</a>
-      <a href="#enterprise" class="btn-outline">Para empresas</a>
-    </div>
-  </div>
-
-  <div class="hero-visual">
-    <div class="saturn-wrap">
-      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="pg" cx="38%" cy="34%">
-            <stop offset="0%" stop-color="#252510"/>
-            <stop offset="55%" stop-color="#0e0e05"/>
-            <stop offset="100%" stop-color="#080808"/>
-          </radialGradient>
-          <radialGradient id="glow" cx="50%" cy="50%">
-            <stop offset="0%" stop-color="#DEFF00" stop-opacity="0.12"/>
-            <stop offset="100%" stop-color="#DEFF00" stop-opacity="0"/>
-          </radialGradient>
-          <clipPath id="bottom"><rect x="0" y="250" width="500" height="250"/></clipPath>
-          <clipPath id="top"><rect x="0" y="0" width="500" height="250"/></clipPath>
-        </defs>
-
-        <!-- Cross-hairs background -->
-        <line x1="0" y1="250" x2="500" y2="250" stroke="#161616" stroke-width="1"/>
-        <line x1="250" y1="0" x2="250" y2="500" stroke="#161616" stroke-width="1"/>
-
-        <!-- Corner brackets -->
-        <path d="M12 30 L12 12 L30 12" fill="none" stroke="#2a2a2a" stroke-width="1"/>
-        <path d="M488 30 L488 12 L470 12" fill="none" stroke="#2a2a2a" stroke-width="1"/>
-        <path d="M12 470 L12 488 L30 488" fill="none" stroke="#2a2a2a" stroke-width="1"/>
-        <path d="M488 470 L488 488 L470 488" fill="none" stroke="#2a2a2a" stroke-width="1"/>
-
-        <!-- Glow -->
-        <circle cx="250" cy="250" r="140" fill="url(#glow)"/>
-
-        <!-- Rings BOTTOM (behind planet) -->
-        <g clip-path="url(#bottom)" style="animation: ringRotate 40s linear infinite; transform-origin: 250px 250px;">
-          <ellipse cx="250" cy="250" rx="212" ry="58" fill="none" stroke="#DEFF00" stroke-width="0.5" opacity="0.1"/>
-          <ellipse cx="250" cy="250" rx="192" ry="52" fill="none" stroke="#DEFF00" stroke-width="1" opacity="0.18"/>
-          <ellipse cx="250" cy="250" rx="170" ry="46" fill="none" stroke="#DEFF00" stroke-width="1.5" opacity="0.28"/>
-          <ellipse cx="250" cy="250" rx="148" ry="40" fill="none" stroke="#DEFF00" stroke-width="1" opacity="0.35"/>
-          <ellipse cx="250" cy="250" rx="128" ry="34" fill="none" stroke="#DEFF00" stroke-width="2" opacity="0.45"/>
-        </g>
-
-        <!-- Planet -->
-        <circle cx="250" cy="250" r="75" fill="#080808"/>
-        <circle cx="250" cy="250" r="75" fill="url(#pg)"/>
-        <circle cx="250" cy="250" r="75" fill="none" stroke="#1e1e1e" stroke-width="1"/>
-
-        <!-- Surface dots -->
-        <circle cx="232" cy="237" r="1.5" fill="#DEFF00" opacity="0.5" style="animation: pulse 3s 0s ease-in-out infinite"/>
-        <circle cx="256" cy="228" r="1.5" fill="#DEFF00" opacity="0.4" style="animation: pulse 3s 0.8s ease-in-out infinite"/>
-        <circle cx="272" cy="246" r="1.5" fill="#DEFF00" opacity="0.5" style="animation: pulse 3s 1.6s ease-in-out infinite"/>
-        <circle cx="241" cy="264" r="1.5" fill="#DEFF00" opacity="0.35" style="animation: pulse 3s 0.4s ease-in-out infinite"/>
-        <circle cx="265" cy="265" r="1.5" fill="#DEFF00" opacity="0.4" style="animation: pulse 3s 1.2s ease-in-out infinite"/>
-        <circle cx="250" cy="250" r="3" fill="#DEFF00" opacity="0.85" style="animation: pulse 2s ease-in-out infinite"/>
-
-        <!-- Rings TOP (in front of planet) -->
-        <g clip-path="url(#top)" style="animation: ringRotate 40s linear infinite; transform-origin: 250px 250px;">
-          <ellipse cx="250" cy="250" rx="212" ry="58" fill="none" stroke="#DEFF00" stroke-width="0.5" opacity="0.1"/>
-          <ellipse cx="250" cy="250" rx="192" ry="52" fill="none" stroke="#DEFF00" stroke-width="1" opacity="0.18"/>
-          <ellipse cx="250" cy="250" rx="170" ry="46" fill="none" stroke="#DEFF00" stroke-width="1.5" opacity="0.28"/>
-          <ellipse cx="250" cy="250" rx="148" ry="40" fill="none" stroke="#DEFF00" stroke-width="1" opacity="0.35"/>
-          <ellipse cx="250" cy="250" rx="128" ry="34" fill="none" stroke="#DEFF00" stroke-width="2" opacity="0.45"/>
-        </g>
-
-        <!-- Floating satellite dots -->
-        <circle cx="105" cy="175" r="3.5" fill="#DEFF00" opacity="0.55" style="animation: floatY 7s ease-in-out infinite"/>
-        <line x1="108" y1="175" x2="162" y2="212" stroke="#DEFF00" stroke-width="0.5" opacity="0.15" style="animation: floatY 7s ease-in-out infinite"/>
-        <circle cx="395" cy="300" r="3" fill="#DEFF00" opacity="0.45" style="animation: floatY 9s 1s ease-in-out infinite"/>
-        <line x1="392" y1="300" x2="340" y2="270" stroke="#DEFF00" stroke-width="0.5" opacity="0.12" style="animation: floatY 9s 1s ease-in-out infinite"/>
-        <circle cx="380" cy="148" r="2" fill="#DEFF00" opacity="0.35" style="animation: floatY 5s 2s ease-in-out infinite"/>
-        <circle cx="118" cy="348" r="2.5" fill="#DEFF00" opacity="0.3" style="animation: floatY 11s 0.5s ease-in-out infinite"/>
-        <circle cx="420" cy="200" r="1.5" fill="#DEFF00" opacity="0.25" style="animation: floatY 6s 3s ease-in-out infinite"/>
-
-        <!-- Label -->
-        <text x="250" y="460" text-anchor="middle"
-          font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="3"
-          fill="#2a2a2a" text-transform="uppercase">SATURNLAB.AI</text>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <div class="ticker-item">Crea tu primera web con AI <span class="dot">◆</span></div>
-    <div class="ticker-item">Automatiza tus procesos <span class="dot">◆</span></div>
-    <div class="ticker-item">De idea a MVP <span class="dot">◆</span></div>
-    <div class="ticker-item">Aplicá Claude en tu trabajo <span class="dot">◆</span></div>
-    <div class="ticker-item">AI para tu empresa <span class="dot">◆</span></div>
-    <div class="ticker-item">Webinars en vivo <span class="dot">◆</span></div>
-    <div class="ticker-item">Cursos grabados <span class="dot">◆</span></div>
-    <div class="ticker-item">Cohortes en vivo <span class="dot">◆</span></div>
-    <!-- duplicate for seamless loop -->
-    <div class="ticker-item">Crea tu primera web con AI <span class="dot">◆</span></div>
-    <div class="ticker-item">Automatiza tus procesos <span class="dot">◆</span></div>
-    <div class="ticker-item">De idea a MVP <span class="dot">◆</span></div>
-    <div class="ticker-item">Aplicá Claude en tu trabajo <span class="dot">◆</span></div>
-    <div class="ticker-item">AI para tu empresa <span class="dot">◆</span></div>
-    <div class="ticker-item">Webinars en vivo <span class="dot">◆</span></div>
-    <div class="ticker-item">Cursos grabados <span class="dot">◆</span></div>
-    <div class="ticker-item">Cohortes en vivo <span class="dot">◆</span></div>
-  </div>
-</div>
-
-<!-- COURSES -->
-<section class="sec" id="cursos">
-  <div class="sec-inner">
-    <div class="courses-head reveal">
-      <div>
-        <div class="sec-label">Cursos individuales</div>
-        <h2>Aprendé haciendo.<br>Resultados reales.</h2>
-      </div>
-      <p class="courses-note">Cada curso está diseñado para que apliques lo que aprendés de inmediato. Sin teoría vacía.</p>
-    </div>
-    <div class="courses-grid">
-      <div class="course-card reveal">
-        <div class="card-num">01 — Web</div>
-        <h3 class="card-title">Crea tu primera página web con AI</h3>
-        <p class="card-desc">Aprendé a construir y publicar un sitio web completo usando herramientas de AI, sin saber programar. Ideal para freelancers, emprendedores y profesionales que quieren presencia digital.</p>
-        <div class="card-footer">
-          <span class="card-tag">Sin código</span>
-          <span class="card-arrow">↗</span>
-        </div>
-      </div>
-      <div class="course-card reveal">
-        <div class="card-num">02 — Automatización</div>
-        <h3 class="card-title">Automatiza tus procesos con AI</h3>
-        <p class="card-desc">Eliminá tareas repetitivas y ganá horas a la semana. Aprendé a conectar herramientas, crear flujos automáticos y hacer que tu trabajo corra solo.</p>
-        <div class="card-footer">
-          <span class="card-tag">Productividad</span>
-          <span class="card-arrow">↗</span>
-        </div>
-      </div>
-      <div class="course-card reveal">
-        <div class="card-num">03 — Producto</div>
-        <h3 class="card-title">De idea a producto: hacé tu primer MVP</h3>
-        <p class="card-desc">Convertí tu idea en un producto real. Aprendé a validar, prototipar y lanzar un MVP usando AI como copiloto, sin equipo técnico.</p>
-        <div class="card-footer">
-          <span class="card-tag">Emprendimiento</span>
-          <span class="card-arrow">↗</span>
-        </div>
-      </div>
-      <div class="course-card reveal">
-        <div class="card-num">04 — Claude</div>
-        <h3 class="card-title">Aplicá Claude en tu trabajo y sé un héroe</h3>
-        <p class="card-desc">Dominá Claude para escribir mejor, analizar información, tomar decisiones más rápido y destacarte en tu trabajo. Para cualquier industria, cualquier rol.</p>
-        <div class="card-footer">
-          <span class="card-tag">Cualquier rol</span>
-          <span class="card-arrow">↗</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ENTERPRISE -->
-<section class="sec ent-section" id="enterprise">
-  <div class="ent-inner">
-    <div class="reveal">
-      <div class="sec-label">Enterprise</div>
-      <h2>AI para tu empresa:<br><em>de la estrategia</em><br>a la ejecución.</h2>
-      <p class="ent-desc">Implementamos AI en los procesos de tu equipo. Diagnóstico, formación personalizada, automatizaciones a medida y acompañamiento continuo. Para empresas que quieren resultados, no teoría.</p>
-      <a href="mailto:hola@saturnlab.ai" class="btn-primary">Hablemos →</a>
-    </div>
-    <div class="ent-items reveal">
-      <div class="ent-item">
-        <div class="ent-icon">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        </div>
-        <div>
-          <div class="ent-item-title">Diagnóstico</div>
-          <div class="ent-item-text">Analizamos los procesos de tu equipo e identificamos dónde AI genera el mayor impacto.</div>
-        </div>
-      </div>
-      <div class="ent-item">
-        <div class="ent-icon">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div>
-          <div class="ent-item-title">Formación personalizada</div>
-          <div class="ent-item-text">Capacitación práctica adaptada a tu industria, herramientas y objetivos específicos.</div>
-        </div>
-      </div>
-      <div class="ent-item">
-        <div class="ent-icon">
-          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        </div>
-        <div>
-          <div class="ent-item-title">Automatizaciones a medida</div>
-          <div class="ent-item-text">Flujos automáticos construidos sobre las herramientas que tu equipo ya usa.</div>
-        </div>
-      </div>
-      <div class="ent-item">
-        <div class="ent-icon">
-          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <div>
-          <div class="ent-item-title">Acompañamiento continuo</div>
-          <div class="ent-item-text">No te dejamos solo. Iteramos, medimos y optimizamos junto a tu equipo.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FORMATS -->
-<section class="sec" id="formatos">
-  <div class="sec-inner">
-    <div class="formats-head reveal">
-      <div class="sec-label">Formatos</div>
-      <h2>Aprendé como<br>mejor te funcione.</h2>
-    </div>
-    <div class="formats-grid">
-      <div class="fmt-card reveal">
-        <div class="fmt-num">01</div>
-        <h3 class="fmt-title">Webinars en vivo</h3>
-        <p class="fmt-desc">La puerta de entrada al ecosistema Saturnlab. Gratuitos o de pago, son sesiones en vivo donde aprendés y conectás con la comunidad.</p>
-        <span class="fmt-badge">Gratis / Pago</span>
-      </div>
-      <div class="fmt-card reveal">
-        <div class="fmt-num">02</div>
-        <h3 class="fmt-title">Cursos grabados</h3>
-        <p class="fmt-desc">Acceso inmediato, a tu ritmo. Aprendé cuando quieras, cuantas veces quieras. El contenido es tuyo para siempre.</p>
-        <span class="fmt-badge">A tu ritmo</span>
-      </div>
-      <div class="fmt-card reveal">
-        <div class="fmt-num">03</div>
-        <h3 class="fmt-title">Cursos en vivo con cohortes</h3>
-        <p class="fmt-desc">Fechas programadas, comunidad activa y feedback directo. Aprendés junto a otras personas y llegás más lejos.</p>
-        <span class="fmt-badge">Comunidad</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-brand">
-    <div class="footer-logo">Saturn<span>lab</span></div>
-    <div class="footer-tag">Aprende AI. Aplicala hoy. Cambiá cómo trabajás.</div>
-  </div>
-  <div class="footer-right">
-    <ul class="footer-links">
-      <li><a href="#cursos">Cursos</a></li>
-      <li><a href="#enterprise">Enterprise</a></li>
-      <li><a href="mailto:hola@saturnlab.ai">Contacto</a></li>
-    </ul>
-    <span class="footer-copy">saturnlab.ai — 2025</span>
-  </div>
-</footer>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saturnlab — Aprende AI. Aplicala hoy. Cambiá cómo trabajás.</title>
+<meta name="description" content="Plataforma de formación en AI para profesionales y empresas de habla hispana. Webinars, cursos grabados y en vivo.">
+<link rel="stylesheet" href="./colors_and_type.css">
+<link rel="icon" href="./assets/logo-icon.svg">
 <style>
-  @keyframes ringRotate {
-    from { transform: rotateZ(0deg); }
-    to   { transform: rotateZ(360deg); }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:var(--bg-app);color:var(--fg-1);font-family:var(--font-body);-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
+  .eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--saturn-cobalt);font-weight:500;}
+  .dark-mode .eyebrow{color:var(--accent);}
+
+  /* ---------- Buttons ---------- */
+  .btn{font-family:var(--font-display);font-weight:500;font-size:15px;border-radius:var(--radius-md);padding:12px 20px;border:none;cursor:pointer;letter-spacing:0.005em;display:inline-flex;align-items:center;gap:8px;transition:transform var(--dur-fast) var(--ease-out),background var(--dur-fast),opacity var(--dur-fast);white-space:nowrap;}
+  .btn:active{transform:translateY(1px);}
+  .btn--primary{background:var(--accent);color:#fff;}
+  .btn--primary:hover{background:var(--saturn-cobalt-12);}
+  .dark-mode .btn--primary:hover{background:#4a5fe8;}
+  .btn--clay{background:var(--accent-2);color:#fff;}
+  .btn--clay:hover{background:var(--saturn-clay-12);}
+  .btn--outline{background:transparent;color:var(--fg-1);border:1.5px solid var(--fg-1);}
+  .btn--outline:hover{background:var(--bg-hover);}
+  .btn--ghost{background:transparent;color:var(--accent);padding-left:8px;padding-right:8px;}
+  .btn--ghost:hover{opacity:0.7;}
+  .btn--lg{font-size:17px;padding:15px 26px;}
+  .btn--pill{border-radius:var(--radius-pill);}
+  .btn svg{width:18px;height:18px;}
+
+  /* ---------- Nav ---------- */
+  header.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg-app) 82%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-1);}
+  .nav-inner{display:flex;align-items:center;gap:32px;height:72px;}
+  .brand{display:flex;align-items:center;gap:11px;}
+  .brand img{width:34px;height:34px;}
+  .brand .word{font-family:var(--font-display);font-weight:600;font-size:23px;letter-spacing:-0.03em;}
+  .brand .word .lab{color:var(--accent);}
+  .nav-links{display:flex;gap:26px;margin-left:8px;}
+  .nav-links a{font-size:15px;color:var(--fg-2);font-weight:500;transition:color var(--dur-fast);}
+  .nav-links a:hover{color:var(--fg-1);}
+  .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+  .icon-btn{width:38px;height:38px;border-radius:var(--radius-md);border:1px solid var(--border-2);background:transparent;color:var(--fg-2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background var(--dur-fast);}
+  .icon-btn:hover{background:var(--bg-hover);color:var(--fg-1);}
+  .icon-btn svg{width:18px;height:18px;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:84px 0 72px;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:center;}
+  .hero h1{font-family:var(--font-display);font-weight:500;font-size:clamp(44px,5vw,72px);line-height:0.98;letter-spacing:-0.035em;margin:18px 0 0;}
+  .hero .lead{font-size:20px;line-height:1.5;color:var(--fg-2);max-width:480px;margin:22px 0 0;}
+  .hero-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .stat-row{display:flex;gap:40px;margin-top:48px;}
+  .stat .n{font-family:var(--font-display);font-weight:600;font-size:34px;letter-spacing:-0.02em;}
+  .stat .l{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg-3);margin-top:2px;}
+  .hero-visual{aspect-ratio:1/1;border-radius:var(--radius-xl);background:var(--saturn-deep);position:relative;overflow:hidden;box-shadow:var(--shadow-2);}
+
+  /* ---------- Section heading ---------- */
+  .sec{padding:80px 0;}
+  .sec--band{background:var(--bg-canvas);}
+  .sec-head{max-width:620px;margin-bottom:48px;}
+  .sec-head h2{font-family:var(--font-display);font-weight:500;font-size:clamp(32px,3.6vw,46px);line-height:1.05;letter-spacing:-0.03em;margin:14px 0 0;}
+  .sec-head p{font-size:18px;line-height:1.55;color:var(--fg-2);margin:16px 0 0;}
+
+  /* ---------- Format strip ---------- */
+  .formats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .format-card{background:var(--bg-elevated);border:1px solid var(--border-1);border-radius:var(--radius-lg);padding:26px 22px;display:flex;flex-direction:column;gap:12px;transition:transform var(--dur-base) var(--ease-out),box-shadow var(--dur-base);}
+  .format-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-2);}
+  .format-card .ico{width:46px;height:46px;border-radius:var(--radius-md);background:var(--saturn-cobalt-15);color:var(--saturn-cobalt-12);display:flex;align-items:center;justify-content:center;}
+  .dark-mode .format-card .ico{background:rgba(94,114,240,0.18);color:var(--accent);}
+  .format-card .ico svg{width:24px;height:24px;}
+  .format-card h3{font-family:var(--font-display);font-weight:600;font-size:21px;letter-spacing:-0.02em;margin:4px 0 0;}
+  .format-card p{font-size:14.5px;line-height:1.5;color:var(--fg-2);margin:0;}
+
+  /* ---------- Catalog ---------- */
+  .filters{display:flex;gap:10px;margin-bottom:36px;flex-wrap:wrap;}
+  .filter{font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;padding:9px 16px;border-radius:var(--radius-pill);border:1px solid var(--border-2);background:transparent;color:var(--fg-2);cursor:pointer;transition:all var(--dur-fast);}
+  .filter:hover{border-color:var(--fg-2);color:var(--fg-1);}
+  .filter.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+
+  .course-card{background:var(--bg-elevated);border:1px solid var(--border-1);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-1);display:flex;flex-direction:column;cursor:pointer;transition:transform var(--dur-base) var(--ease-out),box-shadow var(--dur-base);}
+  .course-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-2);}
+  .cc-thumb{height:158px;position:relative;overflow:hidden;}
+  .cc-thumb .tag{position:absolute;top:13px;left:13px;z-index:2;white-space:nowrap;font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--saturn-ink);background:var(--saturn-paper);border-radius:var(--radius-sm);padding:5px 9px;}
+  .cc-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .cc-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);}
+  .cc-title{font-family:var(--font-display);font-weight:600;font-size:20px;line-height:1.15;letter-spacing:-0.02em;margin:0;}
+  .cc-meta{font-size:13px;color:var(--fg-2);}
+  .cc-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--divider);}
+  .cc-price{font-family:var(--font-display);font-weight:600;font-size:20px;}
+  .cc-rate{font-family:var(--font-mono);font-size:12px;color:var(--fg-2);}
+
+  /* ---------- Audience ---------- */
+  .aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .aud-col{border-top:3px solid var(--fg-1);padding-top:22px;display:flex;flex-direction:column;gap:12px;}
+  .aud-col.c1{border-color:var(--saturn-cobalt);}
+  .aud-col.c2{border-color:var(--saturn-clay);}
+  .aud-col.c3{border-color:var(--saturn-sun);}
+  .aud-col h3{font-family:var(--font-display);font-weight:600;font-size:24px;letter-spacing:-0.02em;margin:0;}
+  .aud-col p{font-size:15px;line-height:1.55;color:var(--fg-2);margin:0;}
+  .aud-col ul{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .aud-col li{font-size:14.5px;color:var(--fg-1);display:flex;align-items:center;gap:10px;}
+  .aud-col li svg{width:17px;height:17px;color:var(--accent);flex:none;}
+
+  /* ---------- Quote band ---------- */
+  .quote-band{background:var(--saturn-cobalt);color:#fff;}
+  .quote-inner{padding:84px 0;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;}
+  .quote-inner .q{font-family:var(--font-display);font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.18;letter-spacing:-0.02em;}
+  .quote-inner .who{font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#C7CEFA;margin-top:18px;}
+
+  /* ---------- CTA band ---------- */
+  .cta-band{padding:88px 0;}
+  .cta-card{background:var(--saturn-ink);color:var(--saturn-paper);border-radius:var(--radius-xl);padding:60px 56px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
+  .dark-mode .cta-card{background:var(--bg-elevated);border:1px solid var(--border-2);}
+  .cta-card h2{font-family:var(--font-display);font-weight:500;font-size:clamp(30px,3.4vw,42px);line-height:1.05;letter-spacing:-0.03em;margin:0;color:var(--saturn-paper);}
+  .cta-card p{font-size:17px;color:#C8BFAD;margin:14px 0 0;max-width:440px;line-height:1.5;}
+  .email-row{display:flex;gap:10px;}
+  .email-input{font-family:var(--font-body);font-size:15px;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-radius:var(--radius-md);padding:14px 16px;color:#fff;width:260px;outline:none;}
+  .email-input::placeholder{color:rgba(246,241,231,0.5);}
+  .email-input:focus{border-color:var(--accent);}
+
+  /* ---------- Footer ---------- */
+  footer.foot{border-top:1px solid var(--border-1);padding:54px 0 40px;}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;}
+  .foot h4{font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--fg-3);margin:0 0 16px;}
+  .foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
+  .foot a{font-size:14.5px;color:var(--fg-2);}
+  .foot a:hover{color:var(--fg-1);}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:44px;padding-top:24px;border-top:1px solid var(--divider);}
+  .foot-bottom span{font-size:13px;color:var(--fg-3);}
+
+  /* ---------- Modal ---------- */
+  .modal-scrim{position:fixed;inset:0;background:rgba(20,17,9,0.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:100;padding:24px;animation:fade var(--dur-base) var(--ease-out);}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .modal{background:var(--bg-elevated);border-radius:var(--radius-xl);max-width:460px;width:100%;overflow:hidden;box-shadow:var(--shadow-3);animation:pop var(--dur-base) var(--ease-spring);}
+  @keyframes pop{from{transform:translateY(14px) scale(0.98);opacity:0}to{transform:none;opacity:1}}
+  .modal-thumb{height:120px;position:relative;overflow:hidden;}
+  .modal-body{padding:26px 28px 28px;display:flex;flex-direction:column;gap:14px;}
+  .modal-body h3{font-family:var(--font-display);font-weight:600;font-size:26px;letter-spacing:-0.02em;margin:0;}
+  .modal-body .mrow{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--fg-2);}
+  .modal-close{position:absolute;top:12px;right:12px;z-index:3;width:34px;height:34px;border-radius:50%;border:none;background:var(--saturn-paper);color:var(--saturn-ink);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+
+  @media(max-width:900px){
+    .wrap{padding:0 20px;}
+    .hero-grid{grid-template-columns:1fr;} .hero-visual{display:none;}
+    .formats{grid-template-columns:1fr;} .grid{grid-template-columns:1fr 1fr;}
+    .aud-grid{grid-template-columns:1fr;} .cta-card{grid-template-columns:1fr;}
+    .quote-inner{grid-template-columns:1fr;} .foot-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
   }
-  @keyframes floatY {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(-10px); }
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 0.35; }
-    50%       { opacity: 1; }
+  @media(max-width:560px){
+    .grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .stat-row{gap:24px;}
   }
 </style>
+</head>
+<body>
+  <div id="root"></div>
 
-<script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => io.observe(el));
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-  // Stagger cards within their parent grid
-  document.querySelectorAll('.courses-grid .course-card, .formats-grid .fmt-card').forEach((card, i) => {
-    const delay = (i % 2) * 120;
-    card.style.transitionDelay = delay + 'ms';
-  });
-</script>
+  <script type="text/babel" src="./components.jsx"></script>
+  <script type="text/babel" src="./app.jsx"></script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+<svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Saturn AI Bauhaus motif">
+  
+  <circle cx="70" cy="80" r="50" fill="#1E33D6"></circle>
+  
+  <path d="M150 30 A50 50 0 0 1 200 80 L150 80 Z" fill="#F2B53B"></path>
+  
+  <path d="M232 80 A48 48 0 0 1 328 80" fill="none" stroke="#D26B4E" stroke-width="16"></path>
+  
+  <path d="M350 128 L390 48 L430 128 Z" fill="#CF4327"></path>
+  
+  <rect x="0" y="143" width="480" height="6" fill="#1E1A14"></rect>
+  
+  <circle cx="408" cy="40" r="9" fill="#1E1A14"></circle>
+</svg>

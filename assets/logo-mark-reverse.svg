@@ -1,0 +1,10 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Saturn AI mark reverse">
+  <defs>
+    <clipPath id="saturn-front-rev"><rect x="0" y="62" width="120" height="58"></rect></clipPath>
+  </defs>
+  <ellipse cx="60" cy="62" rx="54" ry="15.5" fill="none" stroke="#D26B4E" stroke-width="7" transform="rotate(-24 60 62)"></ellipse>
+  <circle cx="60" cy="62" r="29.5" fill="#F6F1E7"></circle>
+  <g clip-path="url(#saturn-front-rev)">
+    <ellipse cx="60" cy="62" rx="54" ry="15.5" fill="none" stroke="#D26B4E" stroke-width="7" transform="rotate(-24 60 62)"></ellipse>
+  </g>
+</svg>

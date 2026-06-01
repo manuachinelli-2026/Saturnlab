@@ -1,0 +1,328 @@
+/* =============================================================
+   Saturn AI — Foundations: Color & Type
+   Hybrid system: warm "Claude" paper base + a saturated geometric
+   cobalt accent (Bauhaus). Bilingual (ES / EN).
+   -------------------------------------------------------------
+   Fonts are loaded from Google Fonts for now. For production /
+   offline use, self-host the .ttf/.woff2 files into /fonts and
+   swap the @import for @font-face rules (see README).
+     • Jost            — geometric display (Bauhaus / Futura DNA)
+     • Hanken Grotesk  — warm, legible body + UI
+     • JetBrains Mono  — tech labels, code, tags
+   ============================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+:root {
+  /* =========================================================
+     1. BRAND PALETTE
+     ========================================================= */
+
+  /* — Warm neutrals (the "Claude" paper base) — */
+  --saturn-paper:     #F6F1E7;   /* Primary warm background — bone/cream. */
+  --saturn-paper-2:   #EFE8D9;   /* Secondary warm surface / section bands. */
+  --saturn-card:      #FDFBF5;   /* Elevated cards, panels, inputs. */
+  --saturn-ink:       #1E1A14;   /* Primary text — warm near-black. */
+  --saturn-ink-2:     #6A6153;   /* Secondary text — warm taupe. */
+  --saturn-ink-3:     #9C9384;   /* Tertiary / placeholder. */
+  --saturn-line:      #DED5C2;   /* Hairlines, borders on paper. */
+
+  /* — Cobalt: THE geometric accent (Klein-inspired) — */
+  --saturn-cobalt:    #1E33D6;   /* Signature accent. Buttons, links, marks. */
+  --saturn-cobalt-7:  #3F52E0;   /* Hover / lighter step. */
+  --saturn-cobalt-12: #15259E;   /* Press / darker step. */
+  --saturn-cobalt-40: #A6B0F0;   /* Tint — fills, washes. */
+  --saturn-cobalt-15: #DDE1FA;   /* Faint tint — selected rows, badges. */
+
+  /* — Clay: warm bridge accent (the Claude warmth) — */
+  --saturn-clay:      #D26B4E;   /* Secondary accent — warm CTA, highlights. */
+  --saturn-clay-12:   #B6543A;   /* Clay press. */
+  --saturn-clay-20:   #F0D6CB;   /* Clay tint. */
+
+  /* — Bauhaus geometric palette (shapes, illustration, motif) — */
+  --saturn-sun:       #F2B53B;   /* Bauhaus yellow — geometric shapes only. */
+  --saturn-vermillion:#CF4327;   /* Bauhaus red — geometric shapes only. */
+  --saturn-deep:      #141C5C;   /* Deep navy — backgrounds, depth. */
+
+  /* =========================================================
+     2. SEMANTIC TOKENS — LIGHT (default)
+     ========================================================= */
+  --bg-app:        var(--saturn-paper);
+  --bg-canvas:     var(--saturn-paper-2);
+  --bg-elevated:   var(--saturn-card);
+  --bg-input:      var(--saturn-card);
+  --bg-hover:      rgba(30, 26, 20, 0.045);
+  --bg-press:      rgba(30, 26, 20, 0.085);
+  --bg-active:     var(--saturn-cobalt-15);
+
+  --fg-1:          var(--saturn-ink);
+  --fg-2:          var(--saturn-ink-2);
+  --fg-3:          var(--saturn-ink-3);
+  --fg-on-accent:  #FFFFFF;        /* Text on cobalt. */
+  --fg-on-clay:    #FFFFFF;        /* Text on clay. */
+
+  --border-1:      var(--saturn-line);
+  --border-2:      #CDC2AC;        /* Stronger border — inputs, cards. */
+  --divider:       #E6DECC;
+
+  --accent:        var(--saturn-cobalt);
+  --accent-fg:     #FFFFFF;
+  --accent-2:      var(--saturn-clay);
+  --link:          var(--saturn-cobalt);
+
+  /* Status */
+  --status-success: #2F8F5B;
+  --status-warn:    #E0A21A;
+  --status-error:   var(--saturn-vermillion);
+  --status-info:    var(--saturn-cobalt);
+  --status-online:  #2F8F5B;
+
+  /* =========================================================
+     3. RADII — hybrid: soft UI, hard-edge brand shapes
+     UI uses 8–14. Brand / Bauhaus shapes use 0 (sharp) or pill.
+     ========================================================= */
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   14px;
+  --radius-xl:   22px;
+  --radius-pill: 999px;
+  --radius-hard: 0px;   /* Bauhaus sharp edge. */
+
+  /* =========================================================
+     4. SHADOWS — soft, warm-tinted, restrained
+     ========================================================= */
+  --shadow-1: 0 1px 2px rgba(30, 26, 20, 0.06);
+  --shadow-2: 0 8px 24px rgba(30, 26, 20, 0.10), 0 2px 6px rgba(30, 26, 20, 0.06);
+  --shadow-3: 0 20px 48px rgba(30, 26, 20, 0.16), 0 4px 12px rgba(30, 26, 20, 0.08);
+  --shadow-inset: inset 0 0 0 1px rgba(30, 26, 20, 0.06);
+  /* Bauhaus "hard" offset shadow — used on geometric cards / CTAs. */
+  --shadow-hard: 5px 5px 0 0 var(--saturn-ink);
+  --shadow-hard-cobalt: 5px 5px 0 0 var(--saturn-cobalt);
+
+  /* =========================================================
+     5. SPACING (4-base scale)
+     ========================================================= */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* =========================================================
+     6. MOTION — calm, geometric, confident
+     ========================================================= */
+  --ease-out:    cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.15, 1);
+  --ease-spring: cubic-bezier(0.34, 1.46, 0.64, 1);
+  --dur-fast: 130ms;
+  --dur-base: 220ms;
+  --dur-slow: 380ms;
+
+  /* =========================================================
+     7. TYPE SYSTEM
+     ========================================================= */
+  --font-display: "Jost", "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+  --font-body:    "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-ui:      "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Type scale — web-first */
+  --fs-xs:   12px;  --lh-xs:   18px;
+  --fs-sm:   14px;  --lh-sm:   20px;
+  --fs-md:   16px;  --lh-md:   26px;   /* default body */
+  --fs-lg:   18px;  --lh-lg:   28px;
+  --fs-xl:   22px;  --lh-xl:   30px;
+  --fs-2xl:  28px;  --lh-2xl:  34px;
+  --fs-3xl:  38px;  --lh-3xl:  44px;
+  --fs-4xl:  52px;  --lh-4xl:  56px;
+  --fs-5xl:  72px;  --lh-5xl:  74px;
+  --fs-display: 104px; --lh-display: 100px;
+
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+  --fw-black:    800;
+
+  /* Tracking */
+  --tr-tight:   -0.02em;
+  --tr-display: -0.035em;
+  --tr-normal:   0;
+  --tr-loose:    0.04em;
+  --tr-caps:     0.14em;   /* Mono / eyebrow uppercase labels. */
+}
+
+/* =============================================================
+   DARK MODE — warm charcoal, not pure black
+   ============================================================= */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-mode) {
+    --bg-app:      #1A1712;
+    --bg-canvas:   #141109;
+    --bg-elevated: #252017;
+    --bg-input:    #221E16;
+    --bg-hover:    rgba(246, 241, 231, 0.05);
+    --bg-press:    rgba(246, 241, 231, 0.09);
+    --bg-active:   rgba(94, 114, 240, 0.18);
+
+    --fg-1: #F4EEE1;
+    --fg-2: #B8AE9B;
+    --fg-3: #837A6A;
+    --fg-on-accent: #FFFFFF;
+
+    --border-1: #322C20;
+    --border-2: #41392A;
+    --divider:  #2C2619;
+
+    --accent:   #5E72F0;   /* Cobalt lifted for contrast on dark. */
+    --accent-2: #E5896A;   /* Clay lifted. */
+    --link:     #8B98F5;
+
+    --shadow-1: 0 1px 2px rgba(0,0,0,0.5);
+    --shadow-2: 0 8px 24px rgba(0,0,0,0.55), 0 2px 6px rgba(0,0,0,0.4);
+    --shadow-3: 0 20px 48px rgba(0,0,0,0.65);
+    --shadow-inset: inset 0 0 0 1px rgba(246,241,231,0.06);
+    --shadow-hard: 5px 5px 0 0 #000000;
+    --shadow-hard-cobalt: 5px 5px 0 0 #5E72F0;
+  }
+}
+:root.dark-mode {
+  --bg-app:      #1A1712;
+  --bg-canvas:   #141109;
+  --bg-elevated: #252017;
+  --bg-input:    #221E16;
+  --bg-hover:    rgba(246, 241, 231, 0.05);
+  --bg-press:    rgba(246, 241, 231, 0.09);
+  --bg-active:   rgba(94, 114, 240, 0.18);
+  --fg-1: #F4EEE1;
+  --fg-2: #B8AE9B;
+  --fg-3: #837A6A;
+  --fg-on-accent: #FFFFFF;
+  --border-1: #322C20;
+  --border-2: #41392A;
+  --divider:  #2C2619;
+  --accent:   #5E72F0;
+  --accent-2: #E5896A;
+  --link:     #8B98F5;
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.5);
+  --shadow-2: 0 8px 24px rgba(0,0,0,0.55), 0 2px 6px rgba(0,0,0,0.4);
+  --shadow-3: 0 20px 48px rgba(0,0,0,0.65);
+  --shadow-inset: inset 0 0 0 1px rgba(246,241,231,0.06);
+  --shadow-hard: 5px 5px 0 0 #000000;
+  --shadow-hard-cobalt: 5px 5px 0 0 #5E72F0;
+}
+
+/* =============================================================
+   SEMANTIC TYPOGRAPHIC STYLES
+   Display / headings → Jost.  Body / UI → Hanken Grotesk.
+   Eyebrows / tags / code → JetBrains Mono (uppercase, tracked).
+   ============================================================= */
+.s-display {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-display);
+  color: var(--fg-1);
+}
+.s-h1, h1.saturn {
+  font-family: var(--font-display);
+  font-size: var(--fs-5xl);
+  line-height: var(--lh-5xl);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-display);
+  color: var(--fg-1);
+}
+.s-h2, h2.saturn {
+  font-family: var(--font-display);
+  font-size: var(--fs-4xl);
+  line-height: var(--lh-4xl);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-tight);
+  color: var(--fg-1);
+}
+.s-h3, h3.saturn {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  line-height: var(--lh-3xl);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-tight);
+  color: var(--fg-1);
+}
+.s-h4, h4.saturn {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  line-height: var(--lh-2xl);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-tight);
+  color: var(--fg-1);
+}
+.s-lead {
+  font-family: var(--font-body);
+  font-size: var(--fs-xl);
+  line-height: var(--lh-xl);
+  font-weight: var(--fw-regular);
+  color: var(--fg-2);
+}
+.s-body, p.saturn {
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  line-height: var(--lh-md);
+  font-weight: var(--fw-regular);
+  color: var(--fg-1);
+}
+.s-small {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-sm);
+  font-weight: var(--fw-regular);
+  color: var(--fg-2);
+}
+.s-caption {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-xs);
+  font-weight: var(--fw-regular);
+  color: var(--fg-3);
+}
+/* Eyebrow / kicker / tag — mono, uppercase, tracked. The "tech" signal. */
+.s-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tr-caps);
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+.s-cta {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  line-height: 1;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.01em;
+}
+.s-mono, code.saturn, kbd.saturn {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--fg-1);
+}
+.s-link, a.saturn {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 1px;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.s-link:hover, a.saturn:hover { opacity: 0.7; }
+
+.tabular { font-variant-numeric: tabular-nums; }
