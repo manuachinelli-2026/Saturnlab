@@ -179,10 +179,10 @@ function CourseCard({ course, onOpen }) {
 
 /* ---- Catalog ---- */
 const FILTERS = [
-  { id: "todos", label: "Todos" },
-  { id: "grabado", label: "Grabados" },
-  { id: "webinar", label: "Webinars" },
-  { id: "empresa", label: "Empresas" },
+  { id: "todos",   label: "Todos" },
+  { id: "inicial", label: "Desde cero" },
+  { id: "claude",  label: "Claude" },
+  { id: "n8n",     label: "N8N" },
 ];
 function Catalog({ courses, filter, setFilter, onOpen }) {
   const list = filter === "todos" ? courses : courses.filter(c => c.type === filter);
@@ -339,17 +339,30 @@ function EnrollModal({ course, onClose }) {
   if (!course) return null;
   return (
     <div className="modal-scrim" onClick={onClose}>
-      <div className="modal" onClick={e => e.stopPropagation()}>
+      <div className="modal" style={{ maxWidth: 520 }} onClick={e => e.stopPropagation()}>
         <div className="modal-thumb">
           <button className="modal-close" onClick={onClose} aria-label="Cerrar"><Icon name="x" /></button>
           <BauhausThumb variant={course.variant} />
         </div>
         <div className="modal-body">
           <span className="cc-eyebrow">{course.eyebrow}</span>
-          <h3>{course.title}</h3>
-          <div className="mrow"><span>{course.meta}</span><span className="cc-rate">{course.rate}</span></div>
+          <h3 style={{ fontSize: 22, lineHeight: 1.2 }}>{course.title}</h3>
+          {course.desc && (
+            <p style={{ fontSize: 14, color: "var(--fg-2)", lineHeight: 1.6, margin: 0 }}>{course.desc}</p>
+          )}
+          {course.logros && (
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 7 }}>
+              {course.logros.map((l, i) => (
+                <li key={i} style={{ display: "flex", gap: 9, alignItems: "flex-start", fontSize: 13.5, color: "var(--fg-1)" }}>
+                  <Icon name="check" style={{ color: "var(--accent)", flexShrink: 0, marginTop: 1 }} />
+                  {l}
+                </li>
+              ))}
+            </ul>
+          )}
+          <div className="mrow"><span style={{ fontSize: 13, color: "var(--fg-2)" }}>{course.meta}</span><span className="cc-rate">{course.rate}</span></div>
           <div className="mrow" style={{ borderTop: "1px solid var(--divider)", paddingTop: 14 }}>
-            <span className="cc-price" style={{ fontSize: 26 }}>{course.price}</span>
+            <span className="cc-price" style={{ fontSize: 22 }}>{course.price}</span>
             <button className="btn btn--primary btn--lg">Anotarme</button>
           </div>
         </div>
