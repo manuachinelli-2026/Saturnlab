@@ -55,7 +55,6 @@ function Nav({ onServices, onContact }) {
               Pepino
               <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.58em", color: "var(--green)", verticalAlign: "super", marginLeft: "0.08em" }}>AI</span>
             </span>
-            <span className="brand-sub">Agentes de IA</span>
           </div>
         </a>
 
