@@ -97,6 +97,60 @@ function Hero({ onServices }) {
   );
 }
 
+/* ---- Elton — solo full-width card ---- */
+const ELTON = {
+  photo: "https://randomuser.me/api/portraits/men/10.jpg",
+  name: "Elton",
+  role: "Creador de Páginas Web",
+  tagline: "Tu web lista en menos de 24 horas.",
+  desc: "Elton habla contigo por WhatsApp, te hace las preguntas clave y construye tu página web desde cero. Sin reuniones, sin formularios largos, sin esperas. En menos de un día tienes una web profesional, limpia y lista para publicar con tu dominio.",
+  features: [
+    "Chat directo para entender tu negocio",
+    "Diseño personalizado a tu imagen",
+    "Entrega garantizada en menos de 24 horas",
+    "Lista para publicar con tu dominio",
+  ],
+  price: "Desde 75 €",
+  priceNote: "pago único",
+};
+
+function EltonCard() {
+  const waMsg = encodeURIComponent("Hola 👋 me interesa que Elton me haga mi página web. ¿Cómo funciona?");
+  return (
+    <div className="service-card service-card--solo service-card--featured">
+      <div className="solo-left">
+        <div className="solo-avatar">
+          <img src={ELTON.photo} alt={ELTON.name} />
+        </div>
+        <div>
+          <div className="solo-badge">Agente IA</div>
+          <div className="solo-name">{ELTON.name}</div>
+          <div className="solo-role">{ELTON.role}</div>
+        </div>
+        <div className="solo-price-block">
+          <div className="solo-price">{ELTON.price}</div>
+          <div className="solo-price-note">{ELTON.priceNote}</div>
+        </div>
+        <a
+          className="btn btn--green"
+          href={`https://wa.me/34610564163?text=${waMsg}`}
+          target="_blank" rel="noopener noreferrer"
+          style={{ width: "100%", justifyContent: "center" }}
+        >
+          Hablar con Elton
+        </a>
+      </div>
+      <div className="solo-right">
+        <div className="solo-tagline">"{ELTON.tagline}"</div>
+        <div className="solo-desc">{ELTON.desc}</div>
+        <ul className="solo-features">
+          {ELTON.features.map((f, i) => <li key={i}>{f}</li>)}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 /* ---- AI Agents ---- */
 const AGENTS = [
   {
@@ -198,6 +252,7 @@ function Services() {
           disponibles 24 horas. Sin nóminas, sin bajas, sin días libres.
         </p>
         <div className="services-grid">
+          <EltonCard />
           {AGENTS.map((a, i) => <AgentCard key={i} a={a} />)}
         </div>
       </div>
