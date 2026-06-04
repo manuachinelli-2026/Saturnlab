@@ -6,6 +6,7 @@
 <title>Saturno Web Studio — Diseño web, IA y gestión de citas para tu negocio</title>
 <meta name="description" content="Diseñamos tu página web, creamos asistentes de IA para WhatsApp y automatizamos la gestión de tus citas. Tecnología al servicio de tu negocio en España.">
 <link rel="stylesheet" href="./colors_and_type.css">
+<link rel="icon" href="./assets/favicon.png" type="image/png">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -21,6 +22,45 @@
   a { color: inherit; text-decoration: none; }
 
   .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---- Hero icon ---- */
+  .hero-icon-wrap {
+    display: flex; justify-content: center;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .hero-icon-wrap::before {
+    content: '';
+    position: absolute;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(110,232,122,0.13) 0%, transparent 68%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: halo-pulse 3.5s ease-in-out infinite;
+  }
+  .hero-planet {
+    width: 148px; height: 148px;
+    border-radius: 30px;
+    position: relative; z-index: 1;
+    animation: planet-float 4s ease-in-out infinite,
+               planet-glow  3.5s ease-in-out infinite;
+  }
+
+  @keyframes planet-float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-14px); }
+  }
+  @keyframes planet-glow {
+    0%, 100% { box-shadow: 0 10px 40px rgba(0,0,0,0.55); }
+    50%       { box-shadow: 0 10px 40px rgba(0,0,0,0.55),
+                            0 0 48px rgba(110,232,122,0.28); }
+  }
+  @keyframes halo-pulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.12); }
+  }
 
   /* ---- Nav ---- */
   .nav {

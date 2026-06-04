@@ -53,6 +53,13 @@ function Hero({ onServices }) {
   return (
     <section className="hero" id="top">
       <div className="container">
+        <div className="hero-icon-wrap">
+          <img
+            src="./assets/favicon.png"
+            alt="Saturno Web Studio"
+            className="hero-planet"
+          />
+        </div>
         <span className="eyebrow">Saturno Web Studio · España</span>
         <h1>Tu negocio en<br /><em>piloto automático</em></h1>
         <p className="hero-lead">
@@ -90,7 +97,7 @@ const SERVICES = [
       "SEO básico incluido",
       "Formulario de contacto integrado",
     ],
-    price: "59 €",
+    price: "99 €",
     priceNote: "pago único",
     cta: "Quiero mi web",
     featured: false,
