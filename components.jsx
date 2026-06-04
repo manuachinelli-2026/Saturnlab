@@ -1,6 +1,6 @@
 /* Saturno Web Studio — components */
 
-/* ---- Saturn planet mark (inline SVG) ---- */
+/* ---- Saturn planet mark (inline SVG, nav) ---- */
 function SaturnMark({ size = 38 }) {
   const h = Math.round(size * 0.82);
   return (
@@ -8,6 +8,28 @@ function SaturnMark({ size = 38 }) {
       <ellipse cx="28" cy="27" rx="26" ry="9" stroke="#3da847" strokeWidth="4.5" />
       <circle cx="28" cy="21" r="15" fill="#6EE87A" />
       <path d="M3 31 Q28 45 53 31" fill="none" stroke="#6EE87A" strokeWidth="5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/* ---- Hero planet icon (app-icon style, used in hero) ---- */
+function HeroPlanet() {
+  return (
+    <svg
+      className="hero-planet"
+      width="160" height="160"
+      viewBox="0 0 160 160"
+      fill="none"
+      aria-hidden="true"
+    >
+      {/* Dark rounded square background */}
+      <rect width="160" height="160" rx="36" fill="#1b1b26"/>
+      {/* Ring — back half */}
+      <ellipse cx="80" cy="90" rx="52" ry="17" stroke="#3da847" strokeWidth="8" />
+      {/* Planet body */}
+      <circle cx="80" cy="74" r="34" fill="#6EE87A" />
+      {/* Ring — front arc */}
+      <path d="M29 97 Q80 116 131 97" fill="none" stroke="#6EE87A" strokeWidth="9" strokeLinecap="round" />
     </svg>
   );
 }
@@ -50,17 +72,13 @@ function Hero({ onServices }) {
     <section className="hero" id="top">
       <div className="container">
         <div className="hero-icon-wrap">
-          <img
-            src="./assets/favicon.png"
-            alt="Saturno Web Studio"
-            className="hero-planet"
-          />
+          <HeroPlanet />
         </div>
         <span className="eyebrow">Saturno Web Studio · España</span>
         <h1>Tu negocio en<br /><em>piloto automático</em></h1>
         <p className="hero-lead">
-          Tres agentes de IA conectados a tu WhatsApp que gestionan citas,
-          llenan tu agenda y cuidan tu reputación. Las 24 horas, sin que levantes el teléfono.
+          Contrata agentes de IA que trabajan en tu WhatsApp las 24 horas.
+          Gestionan citas, llenan tu agenda y cuidan tu reputación. Sin nóminas ni horarios.
         </p>
         <div className="hero-actions">
           <button className="btn btn--green btn--lg" onClick={onServices}>

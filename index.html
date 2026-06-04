@@ -53,9 +53,9 @@
     50%       { transform: translateY(-14px); }
   }
   @keyframes planet-glow {
-    0%, 100% { box-shadow: 0 10px 40px rgba(0,0,0,0.55); }
-    50%       { box-shadow: 0 10px 40px rgba(0,0,0,0.55),
-                            0 0 48px rgba(110,232,122,0.28); }
+    0%, 100% { filter: drop-shadow(0 12px 24px rgba(0,0,0,0.7)); }
+    50%       { filter: drop-shadow(0 12px 24px rgba(0,0,0,0.7))
+                        drop-shadow(0 0 36px rgba(110,232,122,0.38)); }
   }
   @keyframes halo-pulse {
     0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
