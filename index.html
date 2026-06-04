@@ -100,7 +100,6 @@
     transition: color var(--dur) var(--ease);
   }
   .nav-links a:hover { color: var(--text-1); }
-  .nav-right { margin-left: auto; }
 
   /* ---- Buttons ---- */
   .btn {
@@ -613,6 +612,7 @@
   @media (max-width: 860px) {
     .services-grid { grid-template-columns: 1fr; max-width: 500px; }
     .nav-links { display: none; }
+    .nav-inner { display: flex; justify-content: space-between; }
     .hero { padding: 72px 0 64px; }
     .cta-band { padding: 44px 28px; }
     .section { padding: 64px 0; }
