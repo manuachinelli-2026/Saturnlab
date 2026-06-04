@@ -1,35 +1,44 @@
-/* Saturno Web Studio — components */
+/* Pepino AI — components */
 
-/* ---- Saturn planet mark (inline SVG, nav) ---- */
-function SaturnMark({ size = 38 }) {
-  const h = Math.round(size * 0.82);
+const WA = "5491100000000"; // reemplazá con tu número de WhatsApp
+
+/* ---- Pepino cucumber slice mark ---- */
+function PepinoMark({ size = 38 }) {
+  const cx = size / 2;
+  const cy = size / 2;
+  const r  = size / 2 * 0.96;
+  const seeds = Array.from({ length: 11 }, (_, i) => {
+    const angle = (i * (360 / 11) - 90) * (Math.PI / 180);
+    return { x: cx + r * 0.44 * Math.cos(angle), y: cy + r * 0.44 * Math.sin(angle) };
+  });
   return (
-    <svg width={size} height={h} viewBox="0 0 56 46" fill="none" aria-hidden="true">
-      <ellipse cx="28" cy="27" rx="26" ry="9" stroke="#3da847" strokeWidth="4.5" />
-      <circle cx="28" cy="21" r="15" fill="#6EE87A" />
-      <path d="M3 31 Q28 45 53 31" fill="none" stroke="#6EE87A" strokeWidth="5" strokeLinecap="round" />
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} fill="none" aria-hidden="true">
+      <circle cx={cx} cy={cy} r={r}         fill="#A0FF79"/>
+      <circle cx={cx} cy={cy} r={r * 0.83}  fill="#0B0E0C"/>
+      <circle cx={cx} cy={cy} r={r * 0.74}  fill="#A0FF79"/>
+      <circle cx={cx} cy={cy} r={r * 0.59}  fill="#0B0E0C"/>
+      {seeds.map((s, i) => <circle key={i} cx={s.x} cy={s.y} r={r * 0.09} fill="#A0FF79"/>)}
+      <circle cx={cx} cy={cy} r={r * 0.11}  fill="#A0FF79"/>
     </svg>
   );
 }
 
-/* ---- Hero planet icon (app-icon style, used in hero) ---- */
-function HeroPlanet() {
+/* ---- Hero cucumber icon (app-icon style) ---- */
+function HeroCucumber() {
+  const size = 160, cx = 80, cy = 80, r = 66;
+  const seeds = Array.from({ length: 11 }, (_, i) => {
+    const angle = (i * (360 / 11) - 90) * (Math.PI / 180);
+    return { x: cx + r * 0.44 * Math.cos(angle), y: cy + r * 0.44 * Math.sin(angle) };
+  });
   return (
-    <svg
-      className="hero-planet"
-      width="160" height="160"
-      viewBox="0 0 160 160"
-      fill="none"
-      aria-hidden="true"
-    >
-      {/* Dark rounded square background */}
-      <rect width="160" height="160" rx="36" fill="#1b1b26"/>
-      {/* Ring — back half */}
-      <ellipse cx="80" cy="90" rx="52" ry="17" stroke="#3da847" strokeWidth="8" />
-      {/* Planet body */}
-      <circle cx="80" cy="74" r="34" fill="#6EE87A" />
-      {/* Ring — front arc */}
-      <path d="M29 97 Q80 116 131 97" fill="none" stroke="#6EE87A" strokeWidth="9" strokeLinecap="round" />
+    <svg className="hero-planet" width={size} height={size} viewBox={`0 0 ${size} ${size}`} fill="none" aria-hidden="true">
+      <rect width={size} height={size} rx="36" fill="#11150F"/>
+      <circle cx={cx} cy={cy} r={r}         fill="#A0FF79"/>
+      <circle cx={cx} cy={cy} r={r * 0.83}  fill="#0B0E0C"/>
+      <circle cx={cx} cy={cy} r={r * 0.74}  fill="#A0FF79"/>
+      <circle cx={cx} cy={cy} r={r * 0.59}  fill="#0B0E0C"/>
+      {seeds.map((s, i) => <circle key={i} cx={s.x} cy={s.y} r={r * 0.09} fill="#A0FF79"/>)}
+      <circle cx={cx} cy={cy} r={r * 0.11}  fill="#A0FF79"/>
     </svg>
   );
 }
@@ -40,25 +49,28 @@ function Nav({ onServices, onContact }) {
     <header className="nav">
       <div className="container nav-inner">
         <a className="brand" href="#top">
-          <SaturnMark size={34} />
+          <PepinoMark size={34} />
           <div className="brand-text">
-            <span className="brand-name">Saturno</span>
-            <span className="brand-sub">Web Studio</span>
+            <span className="brand-name">
+              Pepino
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.58em", color: "var(--green)", verticalAlign: "super", marginLeft: "0.08em" }}>AI</span>
+            </span>
+            <span className="brand-sub">Agentes de IA</span>
           </div>
         </a>
 
         <nav className="nav-links">
-          <a href="#servicios" onClick={e => { e.preventDefault(); onServices(); }}>Agentes IA</a>
+          <a href="#servicios" onClick={e => { e.preventDefault(); onServices(); }}>Agentes</a>
           <a href="#contacto"  onClick={e => { e.preventDefault(); onContact();  }}>Contacto</a>
         </nav>
 
         <div className="nav-right">
           <a
             className="btn btn--green"
-            href="https://wa.me/34610564163?text=Hola%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20vuestros%20agentes%20IA"
+            href={`https://wa.me/${WA}?text=${encodeURIComponent("Hola, me gustaría saber más sobre los agentes de Pepino AI")}`}
             target="_blank" rel="noopener noreferrer"
           >
-            Hablar con nosotros
+            Hablá con nosotros
           </a>
         </div>
       </div>
@@ -72,24 +84,24 @@ function Hero({ onServices }) {
     <section className="hero" id="top">
       <div className="container">
         <div className="hero-icon-wrap">
-          <HeroPlanet />
+          <HeroCucumber />
         </div>
-        <span className="eyebrow">Saturno Web Studio · España</span>
-        <h1>Tu negocio en<br /><em>piloto automático</em></h1>
+        <span className="eyebrow">Pepino AI · Agentes de IA</span>
+        <h1>Tus agentes.<br /><em>En verde.</em></h1>
         <p className="hero-lead">
-          Contrata agentes de IA que trabajan en tu WhatsApp las 24 horas.
-          Gestionan citas, llenan tu agenda y cuidan tu reputación. Sin nóminas ni horarios.
+          Agentes de IA que trabajan en tu WhatsApp las 24 horas.
+          Gestionan turnos, llenan tu agenda y cuidan a tus clientes. Frescos, rápidos, sin fricción.
         </p>
         <div className="hero-actions">
           <button className="btn btn--green btn--lg" onClick={onServices}>
-            Conoce a tu equipo
+            Conocé al equipo
           </button>
           <a
             className="btn btn--outline btn--lg"
-            href="https://wa.me/34610564163"
+            href={`https://wa.me/${WA}`}
             target="_blank" rel="noopener noreferrer"
           >
-            Hablar por WhatsApp
+            Hablá por WhatsApp
           </a>
         </div>
       </div>
@@ -101,9 +113,9 @@ function Hero({ onServices }) {
 const ELTON = {
   photo: "https://randomuser.me/api/portraits/men/10.jpg",
   name: "Elton",
-  role: "Creador de Páginas Web",
+  role: "Creador de Sitios Web",
   tagline: "Tu web lista en menos de 24 horas.",
-  desc: "Elton habla contigo por WhatsApp, te hace las preguntas clave y construye tu página web desde cero. Sin reuniones, sin formularios largos, sin esperas. En menos de un día tienes una web profesional, limpia y lista para publicar con tu dominio.",
+  desc: "Elton habla con vos por WhatsApp, te hace las preguntas clave y construye tu sitio web desde cero. Sin reuniones, sin formularios largos, sin esperas. En menos de un día tenés una web profesional, limpia y lista para publicar con tu dominio.",
   features: [
     "Chat directo para entender tu negocio",
     "Diseño personalizado a tu imagen",
@@ -115,7 +127,7 @@ const ELTON = {
 };
 
 function EltonCard() {
-  const waMsg = encodeURIComponent("Hola 👋 me interesa que Elton me haga mi página web. ¿Cómo funciona?");
+  const waMsg = encodeURIComponent("Hola 👋 me interesa que Elton me haga mi sitio web. ¿Cómo funciona?");
   return (
     <div className="service-card service-card--solo service-card--featured">
       <div className="solo-left">
@@ -133,7 +145,7 @@ function EltonCard() {
         </div>
         <a
           className="btn btn--green"
-          href={`https://wa.me/34610564163?text=${waMsg}`}
+          href={`https://wa.me/${WA}?text=${waMsg}`}
           target="_blank" rel="noopener noreferrer"
           style={{ width: "100%", justifyContent: "center" }}
         >
@@ -156,14 +168,14 @@ const AGENTS = [
   {
     photo: "https://randomuser.me/api/portraits/men/32.jpg",
     name: "Paco",
-    role: "Gestor de Citas",
-    tagline: "Nunca más una cita sin confirmar.",
-    desc: "Paco atiende los mensajes de tus clientes, consulta tu agenda en tiempo real y reserva el primer hueco disponible sin que tengas que intervenir. Antes de cada cita envía un recordatorio automático para que nadie falte.",
+    role: "Gestor de Turnos",
+    tagline: "Nunca más un turno sin confirmar.",
+    desc: "Paco atiende los mensajes de tus clientes, consulta tu agenda en tiempo real y reserva el primer hueco disponible sin que tengas que intervenir. Antes de cada turno manda un recordatorio automático para que nadie falte.",
     features: [
-      "Responde y reserva citas en segundos",
+      "Responde y reserva turnos en segundos",
       "Consulta tu disponibilidad en tiempo real",
-      "Recordatorios automáticos antes de cada cita",
-      "Gestiona cambios y cancelaciones sin ti",
+      "Recordatorios automáticos antes de cada turno",
+      "Gestiona cambios y cancelaciones sin vos",
     ],
     price: "95 €",
     priceNote: "al mes",
@@ -178,7 +190,7 @@ const AGENTS = [
     features: [
       "Detecta huecos libres automáticamente",
       "Reactiva clientes que no han vuelto",
-      "Envía promociones personalizadas por WhatsApp",
+      "Manda promociones personalizadas por WhatsApp",
       "Aumenta tu facturación sin esfuerzo extra",
     ],
     price: "79 €",
@@ -190,10 +202,10 @@ const AGENTS = [
     name: "Lucciano",
     role: "Especialista en Reputación",
     tagline: "Tu reputación online en piloto automático.",
-    desc: "Lucciano cuida la relación con tus clientes después de cada visita. Les pregunta por su experiencia, recoge el feedback y los guía a dejar una reseña en Google, construyendo tu reputación mientras tú trabajas.",
+    desc: "Lucciano cuida la relación con tus clientes después de cada visita. Les pregunta por su experiencia, recoge el feedback y los guía a dejar una reseña en Google, construyendo tu reputación mientras vos trabajás.",
     features: [
-      "Seguimiento automático tras cada cita",
-      "Solicita reseñas en Google de forma natural",
+      "Seguimiento automático tras cada turno",
+      "Pide reseñas en Google de forma natural",
       "Gestiona el feedback de cada cliente",
       "Mejora tu puntuación online mes a mes",
     ],
@@ -204,7 +216,7 @@ const AGENTS = [
 ];
 
 function AgentCard({ a }) {
-  const waMsg = encodeURIComponent(`Hola 👋 me interesa contratar a ${a.name} (${a.role}). ¿Me podéis dar más información?`);
+  const waMsg = encodeURIComponent(`Hola 👋 me interesa contratar a ${a.name} (${a.role}). ¿Me pueden dar más información?`);
   return (
     <div className={`service-card${a.featured ? " service-card--featured" : ""}`}>
       <div className="card-header">
@@ -231,7 +243,7 @@ function AgentCard({ a }) {
         </div>
         <a
           className="btn btn--green"
-          href={`https://wa.me/34610564163?text=${waMsg}`}
+          href={`https://wa.me/${WA}?text=${waMsg}`}
           target="_blank" rel="noopener noreferrer"
         >
           Contratar a {a.name}
@@ -246,7 +258,7 @@ function Services() {
     <section className="section" id="servicios">
       <div className="container">
         <div className="section-label">Tu equipo de IA</div>
-        <h2 className="section-title">Agentes IA. Trabajando por ti.</h2>
+        <h2 className="section-title">Agentes IA. Trabajando por vos.</h2>
         <p className="section-sub">
           Como tener empleados especializados conectados a tu WhatsApp,
           disponibles 24 horas. Sin nóminas, sin bajas, sin días libres.
@@ -266,21 +278,21 @@ function CTABand() {
     <section className="section" id="contacto" style={{ paddingTop: 0 }}>
       <div className="container">
         <div className="cta-band">
-          <div className="section-label" style={{ marginBottom: 18 }}>¿Incorporamos a tu equipo?</div>
+          <div className="section-label" style={{ marginBottom: 18 }}>¿Armamos tu equipo?</div>
           <h2>Tu primer agente, en 48 horas.</h2>
           <p>
-            Cuéntanos qué necesita tu negocio y lo tenemos funcionando
+            Contanos qué necesita tu negocio y lo tenemos funcionando
             en menos de dos días. Sin permanencia, sin tecnicismos.
           </p>
           <div className="cta-actions">
             <a
               className="btn btn--green btn--lg"
-              href="https://wa.me/34610564163?text=Hola%2C%20me%20gustar%C3%ADa%20incorporar%20un%20agente%20IA%20a%20mi%20negocio"
+              href={`https://wa.me/${WA}?text=${encodeURIComponent("Hola, me gustaría incorporar un agente IA a mi negocio")}`}
               target="_blank" rel="noopener noreferrer"
             >
               Empezar por WhatsApp
             </a>
-            <a className="btn btn--outline btn--lg" href="mailto:hola@saturno.es">
+            <a className="btn btn--outline btn--lg" href="mailto:hola@getpepino.ai">
               Enviar un email
             </a>
           </div>
@@ -297,14 +309,12 @@ function Footer() {
       <div className="container">
         <div className="footer-inner">
           <div className="footer-brand">
-            <SaturnMark size={26} />
-            <span className="footer-copy">
-              © 2025 Saturno Web Studio · España
-            </span>
+            <PepinoMark size={26} />
+            <span className="footer-copy">© 2026 Pepino AI</span>
           </div>
           <div className="footer-links">
             <a href="#servicios">Agentes IA</a>
-            <a href="mailto:hola@saturno.es">Contacto</a>
+            <a href="mailto:hola@getpepino.ai">Contacto</a>
           </div>
         </div>
       </div>
@@ -314,11 +324,11 @@ function Footer() {
 
 /* ---- Floating WhatsApp button ---- */
 function FloatingWhatsApp() {
-  const msg = encodeURIComponent("Hola 👋 me gustaría saber más sobre vuestros agentes IA");
+  const msg = encodeURIComponent("Hola 👋 me gustaría saber más sobre los agentes de Pepino AI");
   return (
     <a
       className="wa-float"
-      href={`https://wa.me/34610564163?text=${msg}`}
+      href={`https://wa.me/${WA}?text=${msg}`}
       target="_blank" rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
     >
@@ -332,12 +342,12 @@ function FloatingWhatsApp() {
 /* ---- How it works ---- */
 function HowItWorks() {
   const steps = [
-    { n: "01", title: "Hablamos por WhatsApp", desc: "Cuéntanos cómo funciona tu negocio. En una sola conversación entendemos todo lo que tu agente necesita saber." },
-    { n: "02", title: "Configuramos tu agente", desc: "En menos de 48 horas preparamos y probamos a tu agente con toda la información de tu negocio. Sin que hagas nada." },
-    { n: "03", title: "Tu agente empieza a trabajar", desc: "Desde el primer día atiende, reserva y fideliza clientes mientras tú te dedicas a lo que realmente importa." },
+    { n: "01", title: "Hablás con nosotros por WhatsApp", desc: "Contanos cómo funciona tu negocio. En una sola conversación entendemos todo lo que tu agente necesita saber." },
+    { n: "02", title: "Configuramos tu agente",            desc: "En menos de 48 horas preparamos y probamos a tu agente con toda la información de tu negocio. Sin que hagas nada." },
+    { n: "03", title: "Tu agente empieza a trabajar",      desc: "Desde el primer día atiende, reserva y fideliza clientes mientras vos te dedicás a lo que realmente importa." },
   ];
   return (
-    <section className="section" style={{ background: 'var(--bg-canvas, #0f0f16)' }}>
+    <section className="section" style={{ background: "var(--bg-canvas)" }}>
       <div className="container">
         <div className="section-label">Cómo funciona</div>
         <h2 className="section-title">Listo en 48 horas.</h2>
@@ -361,7 +371,7 @@ function VisualChat() {
   return (
     <div className="mockup-card">
       <div className="mockup-topbar">
-        <div className="mockup-avatar">🤖</div>
+        <div className="mockup-avatar">🥒</div>
         <div className="mockup-topbar-info">
           <div className="mockup-topbar-name">Agente Paco</div>
           <div className="mockup-topbar-status">● En línea</div>
@@ -369,8 +379,8 @@ function VisualChat() {
         <div className="mockup-topbar-time">03:24 AM</div>
       </div>
       <div className="mockup-chat">
-        <div className="chat-in">¿Tenéis algún hueco mañana a las 10?</div>
-        <div className="chat-out">¡Claro! Te he reservado mañana a las 10:00h 🗓️ Te mando confirmación ahora.</div>
+        <div className="chat-in">¿Tienen algún hueco mañana a las 10?</div>
+        <div className="chat-out">¡Claro! Te reservé mañana a las 10:00 🗓️ Te mando la confirmación ahora.</div>
         <div className="chat-in">Perfecto, muchas gracias 🙌</div>
         <div className="chat-note">Respuesta automática · 4 segundos</div>
       </div>
@@ -380,12 +390,12 @@ function VisualChat() {
 
 function VisualCalendar() {
   const slots = [
-    { time: "09:00", name: "María G.", filled: true },
-    { time: "10:00", name: "Carlos R.", filled: true },
+    { time: "09:00", name: "María G.",   filled: true  },
+    { time: "10:00", name: "Carlos R.",  filled: true  },
     { time: "11:00", name: "Disponible", filled: false },
-    { time: "12:00", name: "Ana M.", filled: true },
+    { time: "12:00", name: "Ana M.",     filled: true  },
     { time: "16:00", name: "Disponible", filled: false },
-    { time: "17:00", name: "Jorge S.", filled: true },
+    { time: "17:00", name: "Jorge S.",   filled: true  },
   ];
   return (
     <div className="mockup-card">
@@ -395,7 +405,7 @@ function VisualCalendar() {
       </div>
       <div className="cal-slots">
         {slots.map((s, i) => (
-          <div key={i} className={`cal-slot cal-slot--${s.filled ? 'filled' : 'empty'}`}>
+          <div key={i} className={`cal-slot cal-slot--${s.filled ? "filled" : "empty"}`}>
             <span className="cal-slot-time">{s.time}</span>
             <span className="cal-slot-name">{s.name}</span>
             {!s.filled && <span className="cal-slot-tag">Contactando...</span>}
@@ -421,17 +431,17 @@ function VisualStars() {
           </div>
         </div>
         <div className="stars-bars">
-          {[[5,'88%'],[4,'8%'],[3,'3%'],[2,'1%'],[1,'0%']].map(([n, w]) => (
+          {[[5,"88%"],[4,"8%"],[3,"3%"],[2,"1%"],[1,"0%"]].map(([n, w]) => (
             <div key={n} className="stars-bar-row">
               <span className="stars-bar-label">{n}</span>
               <div className="stars-bar-track"><div className="stars-bar-fill" style={{ width: w }}></div></div>
-              <span style={{ fontSize: 11, color: 'var(--text-3)', width: 28 }}>{w}</span>
+              <span style={{ fontSize: 11, color: "var(--text-3)", width: 28 }}>{w}</span>
             </div>
           ))}
         </div>
         <div className="stars-trend">
           <span>↑ +40 reseñas este mes</span>
-          <span style={{ color: 'var(--text-3)' }}>· Gestionado por Lucciano</span>
+          <span style={{ color: "var(--text-3)" }}>· Gestionado por Lucciano</span>
         </div>
       </div>
     </div>
@@ -446,8 +456,8 @@ function BenefitSections({ onServices }) {
         <div className="container benefit-grid">
           <div className="benefit-text">
             <span className="eyebrow">Disponibilidad</span>
-            <h2>Atiende a tus clientes a cualquier hora</h2>
-            <p>Mientras tú cierras, tu agente sigue trabajando. Responde preguntas, reserva citas y gestiona conversaciones a las 3 de la mañana si hace falta. Sin horas extra, sin quejas, sin perder un solo cliente.</p>
+            <h2>Atendé a tus clientes a cualquier hora</h2>
+            <p>Mientras vos cerrás, tu agente sigue trabajando. Responde preguntas, reserva turnos y gestiona conversaciones a las 3 de la mañana si hace falta. Sin horas extra, sin quejas, sin perder un solo cliente.</p>
             <button className="btn btn--green" onClick={onServices}>Ver agentes IA</button>
           </div>
           <div className="benefit-visual"><VisualChat /></div>
@@ -484,14 +494,14 @@ function BenefitSections({ onServices }) {
 /* ---- Why us ---- */
 function WhyUs() {
   const pillars = [
-    { icon: "user-check", title: "Hablan como personas", desc: "Tus agentes no suenan a bot. Se comunican con el tono de tu negocio, con empatía, contexto y naturalidad." },
-    { icon: "shield-check", title: "Sin inventarse nada", desc: "Solo responden con la información que tú les has dado. Sin alucinaciones, sin errores, sin sorpresas desagradables." },
-    { icon: "bell", title: "Saben cuándo llamarte", desc: "Si hay una pregunta que no pueden resolver solos, te avisan a ti para que tomes el control de la conversación." },
+    { icon: "user-check",   title: "Hablan como personas",  desc: "Tus agentes no suenan a bot. Se comunican con el tono de tu negocio, con empatía, contexto y naturalidad." },
+    { icon: "shield-check", title: "Sin inventarse nada",   desc: "Solo responden con la información que vos les das. Sin alucinaciones, sin errores, sin sorpresas desagradables." },
+    { icon: "bell",         title: "Saben cuándo llamarte", desc: "Si hay una pregunta que no pueden resolver solos, te avisan a vos para que tomes el control de la conversación." },
   ];
   return (
     <section className="why-band">
       <div className="container">
-        <div className="section-label">Por qué Saturno</div>
+        <div className="section-label">Por qué Pepino</div>
         <h2 className="section-title">IA que funciona de verdad.</h2>
         <div className="why-grid">
           {pillars.map((p, i) => (
@@ -512,28 +522,28 @@ function Testimonials() {
   const items = [
     {
       stars: 5,
-      quote: "Llevábamos meses con huecos sin cubrir. Desde que activamos a Paco, la agenda siempre está llena y los no-shows han bajado un 80%. Ha sido el mejor dinero que hemos invertido.",
+      quote: "Llevábamos meses con huecos sin cubrir. Desde que activamos a Paco, la agenda siempre está llena y los no-shows bajaron un 80%. El mejor dinero que invertimos.",
       name: "Dra. Carmen Rivas",
-      biz: "Clínica Dental · Barcelona",
+      biz: "Clínica Dental · Buenos Aires",
       tag: "Agente Paco",
     },
     {
       stars: 5,
-      quote: "Le expliqué todo a Elton por WhatsApp y en menos de 20 horas tenía mi web publicada con mi dominio. Ni me lo creía. El proceso fue facilísimo.",
+      quote: "Le expliqué todo a Elton por WhatsApp y en menos de 20 horas tenía mi web publicada con mi dominio. Ni lo podía creer. El proceso fue facilísimo.",
       name: "Roberto M.",
-      biz: "Peluquería · Madrid",
+      biz: "Peluquería · Córdoba",
       tag: "Agente Elton",
     },
     {
       stars: 5,
       quote: "En el primer mes pasamos de 4.1 a 4.7 estrellas en Google. Lucciano consiguió 40 reseñas nuevas sin que yo hiciera absolutamente nada.",
       name: "Ana Pérez",
-      biz: "Centro de Estética · Valencia",
+      biz: "Centro de Estética · Rosario",
       tag: "Agente Lucciano",
     },
   ];
   return (
-    <section className="section" style={{ background: 'var(--bg-canvas, #0f0f16)' }}>
+    <section className="section" style={{ background: "var(--bg-canvas)" }}>
       <div className="container">
         <div className="section-label">Lo que dicen</div>
         <h2 className="section-title">Resultados reales.</h2>
@@ -541,7 +551,7 @@ function Testimonials() {
         <div className="testimonials-grid">
           {items.map((t, i) => (
             <div className="testi-card" key={i}>
-              <div className="testi-stars">{'★'.repeat(t.stars)}</div>
+              <div className="testi-stars">{"★".repeat(t.stars)}</div>
               <p className="testi-quote">{t.quote}</p>
               <div className="testi-author">
                 <span className="testi-tag">{t.tag}</span>
@@ -562,7 +572,7 @@ function FAQ() {
   const items = [
     {
       q: "¿Cómo aprenden los agentes sobre mi negocio?",
-      a: "Tú nos facilitas la información: servicios, precios, horarios, preguntas frecuentes y todo lo que tu agente necesite saber. Nosotros lo configuramos y lo probamos antes de activarlo. Sin complicaciones por tu parte.",
+      a: "Vos nos facilitás la información: servicios, precios, horarios, preguntas frecuentes y todo lo que tu agente necesite saber. Nosotros lo configuramos y lo probamos antes de activarlo. Sin complicaciones de tu parte.",
     },
     {
       q: "¿Cuánto tiempo tarda en estar listo?",
@@ -574,11 +584,11 @@ function FAQ() {
     },
     {
       q: "¿Necesito instalar alguna aplicación?",
-      a: "No. Todo funciona a través de WhatsApp, la app que ya tienes en el móvil. Sin nuevas apps, sin formaciones, sin cambiar la forma en que ya trabajas.",
+      a: "No. Todo funciona a través de WhatsApp, la app que ya tenés en el celular. Sin apps nuevas, sin formaciones, sin cambiar la forma en que ya trabajás.",
     },
     {
       q: "¿Puedo cancelar en cualquier momento?",
-      a: "Sí. Nuestros servicios mensuales no tienen permanencia mínima. Si en algún momento quieres pausar o cancelar, solo tienes que avisarnos con un mensaje.",
+      a: "Sí. Nuestros servicios mensuales no tienen permanencia mínima. Si en algún momento querés pausar o cancelar, solo avisanos con un mensaje.",
     },
   ];
   return (
@@ -586,13 +596,13 @@ function FAQ() {
       <div className="container">
         <div className="section-label">FAQ</div>
         <h2 className="section-title">Preguntas frecuentes.</h2>
-        <p className="section-sub" style={{ marginBottom: 40 }}>Todo lo que necesitas saber antes de empezar.</p>
+        <p className="section-sub" style={{ marginBottom: 40 }}>Todo lo que necesitás saber antes de empezar.</p>
         <div className="faq-list">
           {items.map((item, i) => (
             <div className="faq-item" key={i}>
               <button className="faq-q" onClick={() => setOpen(open === i ? null : i)}>
                 {item.q}
-                <span className="faq-icon">{open === i ? '−' : '+'}</span>
+                <span className="faq-icon">{open === i ? "−" : "+"}</span>
               </button>
               {open === i && <div className="faq-a">{item.a}</div>}
             </div>
@@ -604,7 +614,7 @@ function FAQ() {
 }
 
 Object.assign(window, {
-  SaturnMark, HeroPlanet,
+  PepinoMark, HeroCucumber,
   Nav, Hero, HowItWorks, Services, AgentCard, EltonCard,
   BenefitSections, WhyUs, Testimonials, FAQ,
   CTABand, Footer, FloatingWhatsApp,

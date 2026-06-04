@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Saturno Web Studio — Diseño web, IA y gestión de citas para tu negocio</title>
-<meta name="description" content="Diseñamos tu página web, creamos asistentes de IA para WhatsApp y automatizamos la gestión de tus citas. Tecnología al servicio de tu negocio en España.">
+<title>Pepino AI — Agentes de IA para tu negocio</title>
+<meta name="description" content="Agentes de IA que trabajan en tu WhatsApp las 24 horas. Gestionan turnos, llenan tu agenda y cuidan a tus clientes. Frescos, rápidos, sin fricción.">
 <link rel="stylesheet" href="./colors_and_type.css">
 <link rel="icon" href="./assets/favicon.png" type="image/png">
 <style>
@@ -33,7 +33,7 @@
     content: '';
     position: absolute;
     width: 260px; height: 260px;
-    background: radial-gradient(circle, rgba(110,232,122,0.13) 0%, transparent 68%);
+    background: radial-gradient(circle, rgba(160,255,121,0.13) 0%, transparent 68%);
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
@@ -55,7 +55,7 @@
   @keyframes planet-glow {
     0%, 100% { filter: drop-shadow(0 12px 24px rgba(0,0,0,0.7)); }
     50%       { filter: drop-shadow(0 12px 24px rgba(0,0,0,0.7))
-                        drop-shadow(0 0 36px rgba(110,232,122,0.38)); }
+                        drop-shadow(0 0 36px rgba(160,255,121,0.38)); }
   }
   @keyframes halo-pulse {
     0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
@@ -65,7 +65,7 @@
   /* ---- Nav ---- */
   .nav {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(19, 19, 26, 0.88);
+    background: rgba(11, 14, 12, 0.88);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
@@ -303,7 +303,7 @@
     box-shadow: var(--shadow-hover);
   }
   .service-card--featured {
-    border-color: rgba(110, 232, 122, 0.22);
+    border-color: rgba(160,255,121,0.22);
   }
   .service-card--featured::after {
     content: 'Más popular';
@@ -439,7 +439,7 @@
     background: var(--green); color: #0c200f;
     display: flex; align-items: center; justify-content: center;
     text-decoration: none;
-    box-shadow: 0 4px 20px rgba(110,232,122,0.38), 0 2px 10px rgba(0,0,0,0.45);
+    box-shadow: 0 4px 20px rgba(160,255,121,0.38), 0 2px 10px rgba(0,0,0,0.45);
     transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
   }
   .wa-float:hover {
@@ -481,7 +481,7 @@
 
   /* ---- Benefit sections ---- */
   .benefit-section { padding: 80px 0; }
-  .benefit-section--alt { background: var(--bg-canvas, #0f0f16); }
+  .benefit-section--alt { background: var(--bg-canvas, #0d110d); }
   .benefit-grid {
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 64px; align-items: center;
@@ -516,7 +516,7 @@
   .mockup-topbar-time { margin-left: auto; font-size: 11px; color: var(--text-3); font-family: var(--font-mono); }
   .mockup-chat { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
   .chat-in {
-    background: var(--bg-card-hover,#222230); border-radius: 14px 14px 14px 4px;
+    background: var(--bg-card-hover,#161B12); border-radius: 14px 14px 14px 4px;
     padding: 9px 13px; font-size: 13px; color: var(--text-1);
     max-width: 82%; align-self: flex-start;
   }
@@ -534,7 +534,7 @@
   .cal-slots { padding: 10px 16px; display: flex; flex-direction: column; gap: 7px; }
   .cal-slot { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--r-md); }
   .cal-slot--filled { background: var(--green-dim); border: 1px solid var(--green-border); }
-  .cal-slot--empty  { background: var(--bg-card-hover,#222230); border: 1px dashed var(--border); opacity: 0.7; }
+  .cal-slot--empty  { background: var(--bg-card-hover,#161B12); border: 1px dashed var(--border); opacity: 0.7; }
   .cal-slot-time { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); flex-shrink: 0; width: 40px; }
   .cal-slot-name { font-size: 13px; color: var(--text-1); flex: 1; }
   .cal-slot-tag  { font-size: 10px; font-family: var(--font-mono); color: var(--green); background: var(--green-dim); padding: 2px 7px; border-radius: 99px; }
@@ -549,7 +549,7 @@
   .stars-bars { display: flex; flex-direction: column; gap: 5px; margin-top: 12px; }
   .stars-bar-row { display: flex; align-items: center; gap: 8px; }
   .stars-bar-label { font-size: 11px; color: var(--text-3); width: 12px; }
-  .stars-bar-track { flex: 1; height: 6px; background: var(--bg-card-hover,#222230); border-radius: 3px; overflow: hidden; }
+  .stars-bar-track { flex: 1; height: 6px; background: var(--bg-card-hover,#161B12); border-radius: 3px; overflow: hidden; }
   .stars-bar-fill  { height: 100%; background: var(--green); border-radius: 3px; }
   .stars-trend { display: flex; align-items: center; gap: 6px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--green); }
 
