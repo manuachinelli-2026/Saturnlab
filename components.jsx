@@ -86,7 +86,6 @@ function Hero({ onServices }) {
         <div className="hero-icon-wrap">
           <HeroCucumber />
         </div>
-        <span className="eyebrow">Pepino AI · Agentes de IA</span>
         <h1>Tu negocio en<br /><em>piloto automático.</em></h1>
         <p className="hero-lead">
           Contratá agentes de IA que trabajan en tu WhatsApp las 24 horas.
