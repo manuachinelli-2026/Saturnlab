@@ -100,7 +100,7 @@ function Hero({ onServices }) {
 /* ---- AI Agents ---- */
 const AGENTS = [
   {
-    initial: "P",
+    photo: "https://randomuser.me/api/portraits/men/32.jpg",
     name: "Paco",
     role: "Gestor de Citas",
     tagline: "Nunca más una cita sin confirmar.",
@@ -116,7 +116,7 @@ const AGENTS = [
     featured: false,
   },
   {
-    initial: "M",
+    photo: "https://randomuser.me/api/portraits/men/57.jpg",
     name: "Mateo",
     role: "Especialista en Ocupación",
     tagline: "Tu agenda siempre llena.",
@@ -132,7 +132,7 @@ const AGENTS = [
     featured: true,
   },
   {
-    initial: "L",
+    photo: "https://randomuser.me/api/portraits/men/22.jpg",
     name: "Lucciano",
     role: "Especialista en Reputación",
     tagline: "Tu reputación online en piloto automático.",
@@ -155,7 +155,7 @@ function AgentCard({ a }) {
     <div className={`service-card${a.featured ? " service-card--featured" : ""}`}>
       <div className="card-header">
         <div className="card-avatar">
-          <span className="card-avatar-initial">{a.initial}</span>
+          <img src={a.photo} alt={a.name} className="card-avatar-img" />
         </div>
         <div className="card-agent-info">
           <div className="card-badge">Agente IA</div>
@@ -192,9 +192,9 @@ function Services() {
     <section className="section" id="servicios">
       <div className="container">
         <div className="section-label">Tu equipo de IA</div>
-        <h2 className="section-title">Tres agentes. Trabajando por ti.</h2>
+        <h2 className="section-title">Agentes IA. Trabajando por ti.</h2>
         <p className="section-sub">
-          Como tener tres empleados especializados conectados a tu WhatsApp,
+          Como tener empleados especializados conectados a tu WhatsApp,
           disponibles 24 horas. Sin nóminas, sin bajas, sin días libres.
         </p>
         <div className="services-grid">
