@@ -1,41 +1,42 @@
-/* Miro AI — Design tokens */
+/* Saturno Web Studio — Design tokens */
 
-@import url("https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
 :root {
-  /* — Miró palette — */
-  --bg:     #FFFBF2;
-  --bg-alt: #F5EFE3;
-  --card:   #FFFFFF;
+  /* — Palette — */
+  --bg:           #13131a;
+  --bg-card:      #1b1b25;
+  --bg-card-hover:#222230;
 
-  --text-1: #1A1A1A;
-  --text-2: #5A5A6A;
-  --text-3: #9A9AAA;
+  --text-1:       #f0f0f6;
+  --text-2:       #8a8aa0;
+  --text-3:       #52526a;
 
-  --red:    #E8312A;
-  --yellow: #F5C800;
-  --blue:   #0057B7;
-  --black:  #1A1A1A;
+  --green:        #6EE87A;
+  --green-hover:  #80f08b;
+  --green-press:  #56cc62;
+  --green-dim:    rgba(110, 232, 122, 0.11);
+  --green-border: rgba(110, 232, 122, 0.28);
 
-  --border:   rgba(26, 26, 26, 0.10);
-  --border-2: rgba(26, 26, 26, 0.20);
+  --border:       rgba(255, 255, 255, 0.07);
+  --border-2:     rgba(255, 255, 255, 0.13);
 
   /* — Type — */
-  --font-display: "Syne", system-ui, sans-serif;
-  --font:         "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+  --font:      "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* — Radii — */
-  --r-sm:  4px;
-  --r-md:  10px;
-  --r-lg:  18px;
-  --r-xl:  26px;
+  --r-sm:  6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-xl: 28px;
 
   /* — Motion — */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur:  180ms;
 
   /* — Shadows — */
-  --shadow-card: 0 2px 0px rgba(26,26,26,1), 0 4px 16px rgba(26,26,26,0.08);
-  --shadow-hover: 0 4px 0px rgba(26,26,26,1), 0 8px 28px rgba(26,26,26,0.12);
+  --shadow-card:  0 2px 8px rgba(0,0,0,0.5), 0 16px 40px rgba(0,0,0,0.3);
+  --shadow-green: 0 0 28px rgba(110, 232, 122, 0.18);
+  --shadow-hover: 0 20px 48px rgba(0,0,0,0.45), 0 0 36px rgba(110, 232, 122, 0.09);
 }

@@ -1,75 +1,36 @@
-/* Miro AI — components */
+/* Saturno Web Studio — components */
 
-/* ---- Logo mark ---- */
-function MiroMark({ size = 32 }) {
+/* ---- Saturn planet mark (inline SVG, nav) ---- */
+function SaturnMark({ size = 38 }) {
+  const h = Math.round(size * 0.82);
   return (
-    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      {/* Red main circle */}
-      <circle cx="13" cy="20" r="11" fill="#E8312A"/>
-      {/* Black star */}
-      <path d="M22 5 L23.4 10.2 L28.6 9.2 L25.2 13.2 L27.6 18 L22.6 16 L20.2 21 L19.2 15.8 L14 17 L17.4 13 L14.6 8.4 L19.8 9.8 Z" fill="#1A1A1A"/>
-      {/* Yellow dot */}
-      <circle cx="27.5" cy="5.5" r="4" fill="#F5C800"/>
+    <svg width={size} height={h} viewBox="0 0 56 46" fill="none" aria-hidden="true">
+      <ellipse cx="28" cy="27" rx="26" ry="9" stroke="#3da847" strokeWidth="4.5" />
+      <circle cx="28" cy="21" r="15" fill="#6EE87A" />
+      <path d="M3 31 Q28 45 53 31" fill="none" stroke="#6EE87A" strokeWidth="5" strokeLinecap="round" />
     </svg>
   );
 }
 
-/* ---- Miró background decorations ---- */
-function MiroDecor() {
+/* ---- Hero planet icon (app-icon style, used in hero) ---- */
+function HeroPlanet() {
   return (
-    <div className="miro-decor" aria-hidden="true">
-      {/* Red blob */}
-      <svg className="md-1" width="64" height="54" viewBox="0 0 64 54">
-        <ellipse cx="32" cy="27" rx="30" ry="24" fill="#E8312A" transform="rotate(-15 32 27)"/>
-      </svg>
-      {/* Yellow star */}
-      <svg className="md-2" width="48" height="48" viewBox="0 0 48 48">
-        <polygon points="24,2 28,18 44,18 31,27 35,44 24,35 13,44 17,27 4,18 20,18" fill="#F5C800"/>
-      </svg>
-      {/* Blue circle */}
-      <svg className="md-3" width="36" height="36" viewBox="0 0 36 36">
-        <circle cx="18" cy="18" r="16" fill="#0057B7"/>
-      </svg>
-      {/* Black dot */}
-      <svg className="md-4" width="22" height="22" viewBox="0 0 22 22">
-        <circle cx="11" cy="11" r="10" fill="#1A1A1A"/>
-      </svg>
-    </div>
-  );
-}
-
-/* ---- Miró painting (hero visual) ---- */
-function MiroPainting() {
-  return (
-    <div className="miro-painting-wrap">
-      <svg className="miro-painting" viewBox="0 0 440 350" xmlns="http://www.w3.org/2000/svg">
-        <rect width="440" height="350" fill="#FFFBF2"/>
-        {/* Red organic blob */}
-        <path d="M60 175 Q75 70 145 90 Q210 110 195 180 Q178 248 112 262 Q40 278 60 175Z" fill="#E8312A"/>
-        {/* Blue shape */}
-        <path d="M230 75 L340 210 L195 215Z" fill="#0057B7"/>
-        {/* Yellow big circle */}
-        <circle cx="348" cy="88" r="52" fill="#F5C800"/>
-        {/* Black connecting lines */}
-        <line x1="145" y1="90"  x2="296" y2="75"  stroke="#1A1A1A" strokeWidth="3.5" strokeLinecap="round"/>
-        <line x1="348" y1="140" x2="340" y2="210" stroke="#1A1A1A" strokeWidth="3.5" strokeLinecap="round"/>
-        <path d="M112 262 Q220 308 340 262" fill="none" stroke="#1A1A1A" strokeWidth="3.5" strokeLinecap="round"/>
-        {/* Abstract eye (Miró signature) */}
-        <ellipse cx="118" cy="155" rx="24" ry="14" fill="none" stroke="#1A1A1A" strokeWidth="3"/>
-        <circle cx="118" cy="155" r="7" fill="#1A1A1A"/>
-        {/* Black dots / stars */}
-        <circle cx="62"  cy="68"  r="9"  fill="#1A1A1A"/>
-        <circle cx="390" cy="220" r="11" fill="#E8312A"/>
-        <circle cx="258" cy="38"  r="7"  fill="#1A1A1A"/>
-        <circle cx="54"  cy="300" r="5"  fill="#0057B7"/>
-        {/* Small yellow dot */}
-        <circle cx="404" cy="290" r="16" fill="#F5C800"/>
-        {/* Wavy black line */}
-        <path d="M32 295 Q90 272 148 295 Q206 318 264 295" fill="none" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round"/>
-        {/* Red small circle accent */}
-        <circle cx="390" cy="40" r="10" fill="#E8312A"/>
-      </svg>
-    </div>
+    <svg
+      className="hero-planet"
+      width="160" height="160"
+      viewBox="0 0 160 160"
+      fill="none"
+      aria-hidden="true"
+    >
+      {/* Dark rounded square background */}
+      <rect width="160" height="160" rx="36" fill="#1b1b26"/>
+      {/* Ring — back half */}
+      <ellipse cx="80" cy="90" rx="52" ry="17" stroke="#3da847" strokeWidth="8" />
+      {/* Planet body */}
+      <circle cx="80" cy="74" r="34" fill="#6EE87A" />
+      {/* Ring — front arc */}
+      <path d="M29 97 Q80 116 131 97" fill="none" stroke="#6EE87A" strokeWidth="9" strokeLinecap="round" />
+    </svg>
   );
 }
 
@@ -79,17 +40,22 @@ function Nav({ onServices, onContact }) {
     <header className="nav">
       <div className="container nav-inner">
         <a className="brand" href="#top">
-          <MiroMark size={30} />
-          <span className="brand-name">Miro <span>AI</span></span>
+          <SaturnMark size={34} />
+          <div className="brand-text">
+            <span className="brand-name">Saturno</span>
+            <span className="brand-sub">Web Studio</span>
+          </div>
         </a>
+
         <nav className="nav-links">
           <a href="#servicios" onClick={e => { e.preventDefault(); onServices(); }}>Agentes IA</a>
           <a href="#contacto"  onClick={e => { e.preventDefault(); onContact();  }}>Contacto</a>
         </nav>
+
         <div className="nav-right">
           <a
-            className="btn btn--black"
-            href="https://wa.me/34610564163?text=Hola%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20los%20agentes%20IA%20de%20Miro"
+            className="btn btn--green"
+            href="https://wa.me/34610564163?text=Hola%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20vuestros%20agentes%20IA"
             target="_blank" rel="noopener noreferrer"
           >
             Hablar con nosotros
@@ -104,31 +70,27 @@ function Nav({ onServices, onContact }) {
 function Hero({ onServices }) {
   return (
     <section className="hero" id="top">
-      <MiroDecor />
       <div className="container">
-        <div className="hero-grid">
-          <div className="hero-copy">
-            <span className="eyebrow">Miro AI · España</span>
-            <h1>Tu negocio en<br /><em>piloto automático</em></h1>
-            <p className="hero-lead">
-              Contrata agentes de IA que trabajan en tu WhatsApp las 24 horas.
-              Gestionan citas, llenan tu agenda y cuidan tu reputación.
-              Sin nóminas ni horarios.
-            </p>
-            <div className="hero-actions">
-              <button className="btn btn--black btn--lg" onClick={onServices}>
-                Conoce a tu equipo
-              </button>
-              <a
-                className="btn btn--outline btn--lg"
-                href="https://wa.me/34610564163"
-                target="_blank" rel="noopener noreferrer"
-              >
-                Hablar por WhatsApp
-              </a>
-            </div>
-          </div>
-          <MiroPainting />
+        <div className="hero-icon-wrap">
+          <HeroPlanet />
+        </div>
+        <span className="eyebrow">Saturno Web Studio · España</span>
+        <h1>Tu negocio en<br /><em>piloto automático</em></h1>
+        <p className="hero-lead">
+          Contrata agentes de IA que trabajan en tu WhatsApp las 24 horas.
+          Gestionan citas, llenan tu agenda y cuidan tu reputación. Sin nóminas ni horarios.
+        </p>
+        <div className="hero-actions">
+          <button className="btn btn--green btn--lg" onClick={onServices}>
+            Conoce a tu equipo
+          </button>
+          <a
+            className="btn btn--outline btn--lg"
+            href="https://wa.me/34610564163"
+            target="_blank" rel="noopener noreferrer"
+          >
+            Hablar por WhatsApp
+          </a>
         </div>
       </div>
     </section>
@@ -142,7 +104,7 @@ const AGENTS = [
     name: "Paco",
     role: "Gestor de Citas",
     tagline: "Nunca más una cita sin confirmar.",
-    desc: "Paco atiende los mensajes de tus clientes, consulta tu agenda en tiempo real y reserva el primer hueco disponible sin que tengas que intervenir. Antes de cada cita envía un recordatorio automático.",
+    desc: "Paco atiende los mensajes de tus clientes, consulta tu agenda en tiempo real y reserva el primer hueco disponible sin que tengas que intervenir. Antes de cada cita envía un recordatorio automático para que nadie falte.",
     features: [
       "Responde y reserva citas en segundos",
       "Consulta tu disponibilidad en tiempo real",
@@ -151,7 +113,6 @@ const AGENTS = [
     ],
     price: "95 €",
     priceNote: "al mes",
-    color: "#E8312A",
     featured: false,
   },
   {
@@ -159,7 +120,7 @@ const AGENTS = [
     name: "Mateo",
     role: "Especialista en Ocupación",
     tagline: "Tu agenda siempre llena.",
-    desc: "Mateo detecta los huecos libres antes de que se pierdan. Localiza clientes anteriores que llevan tiempo sin venir y los contacta en el momento oportuno, convirtiendo tiempo muerto en ingresos.",
+    desc: "Mateo detecta los huecos libres antes de que se pierdan. Localiza clientes anteriores que llevan tiempo sin venir y los contacta con el mensaje justo en el momento oportuno, convirtiendo tiempo muerto en ingresos.",
     features: [
       "Detecta huecos libres automáticamente",
       "Reactiva clientes que no han vuelto",
@@ -168,7 +129,6 @@ const AGENTS = [
     ],
     price: "79 €",
     priceNote: "al mes",
-    color: "#0057B7",
     featured: true,
   },
   {
@@ -176,7 +136,7 @@ const AGENTS = [
     name: "Lucciano",
     role: "Especialista en Reputación",
     tagline: "Tu reputación online en piloto automático.",
-    desc: "Lucciano cuida la relación con tus clientes después de cada visita. Les pregunta por su experiencia, recoge el feedback y los guía a dejar una reseña en Google.",
+    desc: "Lucciano cuida la relación con tus clientes después de cada visita. Les pregunta por su experiencia, recoge el feedback y los guía a dejar una reseña en Google, construyendo tu reputación mientras tú trabajas.",
     features: [
       "Seguimiento automático tras cada cita",
       "Solicita reseñas en Google de forma natural",
@@ -185,7 +145,6 @@ const AGENTS = [
     ],
     price: "69 €",
     priceNote: "al mes",
-    color: "#c49a00",
     featured: false,
   },
 ];
@@ -193,10 +152,7 @@ const AGENTS = [
 function AgentCard({ a }) {
   const waMsg = encodeURIComponent(`Hola 👋 me interesa contratar a ${a.name} (${a.role}). ¿Me podéis dar más información?`);
   return (
-    <div
-      className={`service-card${a.featured ? " service-card--featured" : ""}`}
-      style={{ "--agent-color": a.color }}
-    >
+    <div className={`service-card${a.featured ? " service-card--featured" : ""}`}>
       <div className="card-header">
         <div className="card-avatar">
           <img src={a.photo} alt={a.name} className="card-avatar-img" />
@@ -207,7 +163,9 @@ function AgentCard({ a }) {
           <div className="card-role">{a.role}</div>
         </div>
       </div>
-      <div className="card-tagline">"{a.tagline}"</div>
+      <div className="card-desc" style={{ fontStyle: "italic", color: "var(--text-1)", marginBottom: 10, fontSize: 13.5 }}>
+        "{a.tagline}"
+      </div>
       <div className="card-desc">{a.desc}</div>
       <ul className="card-features">
         {a.features.map((f, i) => <li key={i}>{f}</li>)}
@@ -218,7 +176,7 @@ function AgentCard({ a }) {
           <span className="card-price-note">{a.priceNote}</span>
         </div>
         <a
-          className="btn btn--black"
+          className="btn btn--green"
           href={`https://wa.me/34610564163?text=${waMsg}`}
           target="_blank" rel="noopener noreferrer"
         >
@@ -231,7 +189,7 @@ function AgentCard({ a }) {
 
 function Services() {
   return (
-    <section className="section section--alt" id="servicios">
+    <section className="section" id="servicios">
       <div className="container">
         <div className="section-label">Tu equipo de IA</div>
         <h2 className="section-title">Agentes IA. Trabajando por ti.</h2>
@@ -247,13 +205,13 @@ function Services() {
   );
 }
 
-/* ---- CTA band ---- */
+/* ---- CTA / Contact band ---- */
 function CTABand() {
   return (
     <section className="section" id="contacto" style={{ paddingTop: 0 }}>
       <div className="container">
         <div className="cta-band">
-          <div className="section-label">¿Incorporamos a tu equipo?</div>
+          <div className="section-label" style={{ marginBottom: 18 }}>¿Incorporamos a tu equipo?</div>
           <h2>Tu primer agente, en 48 horas.</h2>
           <p>
             Cuéntanos qué necesita tu negocio y lo tenemos funcionando
@@ -261,17 +219,13 @@ function CTABand() {
           </p>
           <div className="cta-actions">
             <a
-              className="btn btn--red btn--lg"
+              className="btn btn--green btn--lg"
               href="https://wa.me/34610564163?text=Hola%2C%20me%20gustar%C3%ADa%20incorporar%20un%20agente%20IA%20a%20mi%20negocio"
               target="_blank" rel="noopener noreferrer"
             >
               Empezar por WhatsApp
             </a>
-            <a
-              className="btn btn--outline btn--lg"
-              style={{ borderColor: "rgba(255,255,255,0.35)", color: "#fff" }}
-              href="mailto:hola@miroai.es"
-            >
+            <a className="btn btn--outline btn--lg" href="mailto:hola@saturno.es">
               Enviar un email
             </a>
           </div>
@@ -288,12 +242,14 @@ function Footer() {
       <div className="container">
         <div className="footer-inner">
           <div className="footer-brand">
-            <MiroMark size={24} />
-            <span className="footer-copy">© 2025 Miro AI · España</span>
+            <SaturnMark size={26} />
+            <span className="footer-copy">
+              © 2025 Saturno Web Studio · España
+            </span>
           </div>
           <div className="footer-links">
             <a href="#servicios">Agentes IA</a>
-            <a href="mailto:hola@miroai.es">Contacto</a>
+            <a href="mailto:hola@saturno.es">Contacto</a>
           </div>
         </div>
       </div>
@@ -301,9 +257,9 @@ function Footer() {
   );
 }
 
-/* ---- Floating WhatsApp ---- */
+/* ---- Floating WhatsApp button ---- */
 function FloatingWhatsApp() {
-  const msg = encodeURIComponent("Hola 👋 me gustaría saber más sobre los agentes IA de Miro");
+  const msg = encodeURIComponent("Hola 👋 me gustaría saber más sobre vuestros agentes IA");
   return (
     <a
       className="wa-float"
@@ -319,6 +275,5 @@ function FloatingWhatsApp() {
 }
 
 Object.assign(window, {
-  MiroMark, MiroDecor, MiroPainting,
-  Nav, Hero, Services, AgentCard, CTABand, Footer, FloatingWhatsApp,
+  SaturnMark, Nav, Hero, Services, AgentCard, CTABand, Footer, FloatingWhatsApp,
 });
