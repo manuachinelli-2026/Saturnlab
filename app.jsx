@@ -20,6 +20,7 @@ function App() {
       <Services />
       <CTABand />
       <Footer />
+      <FloatingWhatsApp />
     </React.Fragment>
   );
 }
