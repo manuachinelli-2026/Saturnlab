@@ -17,7 +17,12 @@ function App() {
         onContact={()  => scrollTo("contacto")}
       />
       <Hero onServices={() => scrollTo("servicios")} />
+      <HowItWorks />
       <Services />
+      <BenefitSections onServices={() => scrollTo("servicios")} />
+      <WhyUs />
+      <Testimonials />
+      <FAQ />
       <CTABand />
       <Footer />
       <FloatingWhatsApp />

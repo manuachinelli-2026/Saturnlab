@@ -329,6 +329,283 @@ function FloatingWhatsApp() {
   );
 }
 
+/* ---- How it works ---- */
+function HowItWorks() {
+  const steps = [
+    { n: "01", title: "Hablamos por WhatsApp", desc: "Cuéntanos cómo funciona tu negocio. En una sola conversación entendemos todo lo que tu agente necesita saber." },
+    { n: "02", title: "Configuramos tu agente", desc: "En menos de 48 horas preparamos y probamos a tu agente con toda la información de tu negocio. Sin que hagas nada." },
+    { n: "03", title: "Tu agente empieza a trabajar", desc: "Desde el primer día atiende, reserva y fideliza clientes mientras tú te dedicas a lo que realmente importa." },
+  ];
+  return (
+    <section className="section" style={{ background: 'var(--bg-canvas, #0f0f16)' }}>
+      <div className="container">
+        <div className="section-label">Cómo funciona</div>
+        <h2 className="section-title">Listo en 48 horas.</h2>
+        <p className="section-sub">Sin reuniones, sin contratos, sin complicaciones. Solo tres pasos.</p>
+        <div className="steps-grid">
+          {steps.map((s, i) => (
+            <div className="step" key={i}>
+              <div className="step-num">{s.n}</div>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---- Benefit visuals ---- */
+function VisualChat() {
+  return (
+    <div className="mockup-card">
+      <div className="mockup-topbar">
+        <div className="mockup-avatar">🤖</div>
+        <div className="mockup-topbar-info">
+          <div className="mockup-topbar-name">Agente Paco</div>
+          <div className="mockup-topbar-status">● En línea</div>
+        </div>
+        <div className="mockup-topbar-time">03:24 AM</div>
+      </div>
+      <div className="mockup-chat">
+        <div className="chat-in">¿Tenéis algún hueco mañana a las 10?</div>
+        <div className="chat-out">¡Claro! Te he reservado mañana a las 10:00h 🗓️ Te mando confirmación ahora.</div>
+        <div className="chat-in">Perfecto, muchas gracias 🙌</div>
+        <div className="chat-note">Respuesta automática · 4 segundos</div>
+      </div>
+    </div>
+  );
+}
+
+function VisualCalendar() {
+  const slots = [
+    { time: "09:00", name: "María G.", filled: true },
+    { time: "10:00", name: "Carlos R.", filled: true },
+    { time: "11:00", name: "Disponible", filled: false },
+    { time: "12:00", name: "Ana M.", filled: true },
+    { time: "16:00", name: "Disponible", filled: false },
+    { time: "17:00", name: "Jorge S.", filled: true },
+  ];
+  return (
+    <div className="mockup-card">
+      <div className="cal-header">
+        <span>Tu agenda — hoy</span>
+        <small>Mateo actuando →</small>
+      </div>
+      <div className="cal-slots">
+        {slots.map((s, i) => (
+          <div key={i} className={`cal-slot cal-slot--${s.filled ? 'filled' : 'empty'}`}>
+            <span className="cal-slot-time">{s.time}</span>
+            <span className="cal-slot-name">{s.name}</span>
+            {!s.filled && <span className="cal-slot-tag">Contactando...</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function VisualStars() {
+  return (
+    <div className="mockup-card">
+      <div className="stars-card">
+        <div className="stars-header">
+          <div className="stars-logo">G</div>
+          <div>
+            <div className="stars-name">Tu negocio en Google</div>
+            <div className="stars-row">
+              {[1,2,3,4,5].map(i => <span key={i} className="star-fill">★</span>)}
+            </div>
+            <div className="stars-count">4.8 · 127 reseñas</div>
+          </div>
+        </div>
+        <div className="stars-bars">
+          {[[5,'88%'],[4,'8%'],[3,'3%'],[2,'1%'],[1,'0%']].map(([n, w]) => (
+            <div key={n} className="stars-bar-row">
+              <span className="stars-bar-label">{n}</span>
+              <div className="stars-bar-track"><div className="stars-bar-fill" style={{ width: w }}></div></div>
+              <span style={{ fontSize: 11, color: 'var(--text-3)', width: 28 }}>{w}</span>
+            </div>
+          ))}
+        </div>
+        <div className="stars-trend">
+          <span>↑ +40 reseñas este mes</span>
+          <span style={{ color: 'var(--text-3)' }}>· Gestionado por Lucciano</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---- Benefit sections ---- */
+function BenefitSections({ onServices }) {
+  return (
+    <React.Fragment>
+      <section className="benefit-section">
+        <div className="container benefit-grid">
+          <div className="benefit-text">
+            <span className="eyebrow">Disponibilidad</span>
+            <h2>Atiende a tus clientes a cualquier hora</h2>
+            <p>Mientras tú cierras, tu agente sigue trabajando. Responde preguntas, reserva citas y gestiona conversaciones a las 3 de la mañana si hace falta. Sin horas extra, sin quejas, sin perder un solo cliente.</p>
+            <button className="btn btn--green" onClick={onServices}>Ver agentes IA</button>
+          </div>
+          <div className="benefit-visual"><VisualChat /></div>
+        </div>
+      </section>
+
+      <section className="benefit-section benefit-section--alt">
+        <div className="container benefit-grid benefit-grid--reverse">
+          <div className="benefit-text">
+            <span className="eyebrow">Ocupación</span>
+            <h2>Tu agenda siempre llena, sin esfuerzo</h2>
+            <p>Mateo detecta los huecos antes de que se pierdan y contacta a clientes que llevan tiempo sin venir. Tu facturación sube sin que tengas que hacer absolutamente nada.</p>
+            <button className="btn btn--green" onClick={onServices}>Conocer a Mateo</button>
+          </div>
+          <div className="benefit-visual"><VisualCalendar /></div>
+        </div>
+      </section>
+
+      <section className="benefit-section">
+        <div className="container benefit-grid">
+          <div className="benefit-text">
+            <span className="eyebrow">Reputación</span>
+            <h2>Tu nota en Google, subiendo sola</h2>
+            <p>Lucciano contacta a cada cliente después de su visita, recoge su opinión y los guía a dejar una reseña. Más reseñas positivas, más visibilidad, más clientes nuevos. Solo.</p>
+            <button className="btn btn--green" onClick={onServices}>Conocer a Lucciano</button>
+          </div>
+          <div className="benefit-visual"><VisualStars /></div>
+        </div>
+      </section>
+    </React.Fragment>
+  );
+}
+
+/* ---- Why us ---- */
+function WhyUs() {
+  const pillars = [
+    { icon: "user-check", title: "Hablan como personas", desc: "Tus agentes no suenan a bot. Se comunican con el tono de tu negocio, con empatía, contexto y naturalidad." },
+    { icon: "shield-check", title: "Sin inventarse nada", desc: "Solo responden con la información que tú les has dado. Sin alucinaciones, sin errores, sin sorpresas desagradables." },
+    { icon: "bell", title: "Saben cuándo llamarte", desc: "Si hay una pregunta que no pueden resolver solos, te avisan a ti para que tomes el control de la conversación." },
+  ];
+  return (
+    <section className="why-band">
+      <div className="container">
+        <div className="section-label">Por qué Saturno</div>
+        <h2 className="section-title">IA que funciona de verdad.</h2>
+        <div className="why-grid">
+          {pillars.map((p, i) => (
+            <div className="why-card" key={i}>
+              <div className="why-icon"><i data-lucide={p.icon}></i></div>
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---- Testimonials ---- */
+function Testimonials() {
+  const items = [
+    {
+      stars: 5,
+      quote: "Llevábamos meses con huecos sin cubrir. Desde que activamos a Paco, la agenda siempre está llena y los no-shows han bajado un 80%. Ha sido el mejor dinero que hemos invertido.",
+      name: "Dra. Carmen Rivas",
+      biz: "Clínica Dental · Barcelona",
+      tag: "Agente Paco",
+    },
+    {
+      stars: 5,
+      quote: "Le expliqué todo a Elton por WhatsApp y en menos de 20 horas tenía mi web publicada con mi dominio. Ni me lo creía. El proceso fue facilísimo.",
+      name: "Roberto M.",
+      biz: "Peluquería · Madrid",
+      tag: "Agente Elton",
+    },
+    {
+      stars: 5,
+      quote: "En el primer mes pasamos de 4.1 a 4.7 estrellas en Google. Lucciano consiguió 40 reseñas nuevas sin que yo hiciera absolutamente nada.",
+      name: "Ana Pérez",
+      biz: "Centro de Estética · Valencia",
+      tag: "Agente Lucciano",
+    },
+  ];
+  return (
+    <section className="section" style={{ background: 'var(--bg-canvas, #0f0f16)' }}>
+      <div className="container">
+        <div className="section-label">Lo que dicen</div>
+        <h2 className="section-title">Resultados reales.</h2>
+        <p className="section-sub" style={{ marginBottom: 40 }}>Negocios como el tuyo que ya trabajan con sus agentes IA.</p>
+        <div className="testimonials-grid">
+          {items.map((t, i) => (
+            <div className="testi-card" key={i}>
+              <div className="testi-stars">{'★'.repeat(t.stars)}</div>
+              <p className="testi-quote">{t.quote}</p>
+              <div className="testi-author">
+                <span className="testi-tag">{t.tag}</span>
+                <span className="testi-name">{t.name}</span>
+                <span className="testi-biz">{t.biz}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---- FAQ ---- */
+function FAQ() {
+  const [open, setOpen] = React.useState(null);
+  const items = [
+    {
+      q: "¿Cómo aprenden los agentes sobre mi negocio?",
+      a: "Tú nos facilitas la información: servicios, precios, horarios, preguntas frecuentes y todo lo que tu agente necesite saber. Nosotros lo configuramos y lo probamos antes de activarlo. Sin complicaciones por tu parte.",
+    },
+    {
+      q: "¿Cuánto tiempo tarda en estar listo?",
+      a: "En menos de 48 horas. Una vez que tenemos la información de tu negocio, configuramos al agente, lo probamos a fondo y lo activamos. El mismo día que se activa ya está atendiendo a tus clientes.",
+    },
+    {
+      q: "¿Qué pasa si un cliente hace una pregunta que el agente no sabe responder?",
+      a: "El agente nunca se inventa respuestas. Si recibe una pregunta que no está dentro de su conocimiento, te avisa directamente para que puedas tomar el control de esa conversación.",
+    },
+    {
+      q: "¿Necesito instalar alguna aplicación?",
+      a: "No. Todo funciona a través de WhatsApp, la app que ya tienes en el móvil. Sin nuevas apps, sin formaciones, sin cambiar la forma en que ya trabajas.",
+    },
+    {
+      q: "¿Puedo cancelar en cualquier momento?",
+      a: "Sí. Nuestros servicios mensuales no tienen permanencia mínima. Si en algún momento quieres pausar o cancelar, solo tienes que avisarnos con un mensaje.",
+    },
+  ];
+  return (
+    <section className="section">
+      <div className="container">
+        <div className="section-label">FAQ</div>
+        <h2 className="section-title">Preguntas frecuentes.</h2>
+        <p className="section-sub" style={{ marginBottom: 40 }}>Todo lo que necesitas saber antes de empezar.</p>
+        <div className="faq-list">
+          {items.map((item, i) => (
+            <div className="faq-item" key={i}>
+              <button className="faq-q" onClick={() => setOpen(open === i ? null : i)}>
+                {item.q}
+                <span className="faq-icon">{open === i ? '−' : '+'}</span>
+              </button>
+              {open === i && <div className="faq-a">{item.a}</div>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 Object.assign(window, {
-  SaturnMark, Nav, Hero, Services, AgentCard, CTABand, Footer, FloatingWhatsApp,
+  SaturnMark, HeroPlanet,
+  Nav, Hero, HowItWorks, Services, AgentCard, EltonCard,
+  BenefitSections, WhyUs, Testimonials, FAQ,
+  CTABand, Footer, FloatingWhatsApp,
 });
