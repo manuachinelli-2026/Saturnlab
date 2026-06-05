@@ -88,8 +88,8 @@ function Hero({ onServices }) {
         </div>
         <h1>Contrata empleados-IA<br /><em>para tu WhatsApp.</em></h1>
         <p className="hero-lead">
-          Contratá agentes de IA que trabajan en tu WhatsApp las 24 horas.
-          Gestionan turnos, llenan tu agenda y cuidan tu reputación. Sin nóminas ni horarios.
+          Agentes de IA que trabajan en tu WhatsApp las 24 horas.
+          Gestionan reservas, toman pedidos y cuidan tu reputación online. Sin empleados, sin horarios.
         </p>
         <div className="hero-actions">
           <button className="btn btn--green btn--lg" onClick={onServices}>
