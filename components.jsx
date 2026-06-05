@@ -211,6 +211,22 @@ const AGENTS = [
     priceNote: "al mes",
     featured: false,
   },
+  {
+    photo: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Erica",
+    role: "Agente de Delivery",
+    tagline: "Tu delivery, tomado y pagado solo.",
+    desc: "Erica atiende los pedidos de tus clientes por WhatsApp, les presenta el menú, informa precios y medios de pago, y genera la comanda automáticamente. Sin llamadas, sin errores, sin demoras.",
+    features: [
+      "Toma pedidos y consultas las 24 horas",
+      "Informa precios y opciones al instante",
+      "Comparte link de pago o medios de pago",
+      "Genera la comanda lista para cocina",
+    ],
+    price: "89 €",
+    priceNote: "al mes",
+    featured: false,
+  },
 ];
 
 function AgentCard({ a }) {
