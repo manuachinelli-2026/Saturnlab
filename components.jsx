@@ -44,7 +44,7 @@ function HeroCucumber() {
 }
 
 /* ---- Nav ---- */
-function Nav({ onServices, onContact }) {
+function Nav({ onServices, onContact, onBlog }) {
   return (
     <header className="nav">
       <div className="container nav-inner">
@@ -60,6 +60,7 @@ function Nav({ onServices, onContact }) {
 
         <nav className="nav-links">
           <a href="#servicios" onClick={e => { e.preventDefault(); onServices(); }}>Agentes</a>
+          <a href="#blog"      onClick={e => { e.preventDefault(); onBlog();     }}>Blog</a>
           <a href="#contacto"  onClick={e => { e.preventDefault(); onContact();  }}>Contacto</a>
         </nav>
 
@@ -641,9 +642,60 @@ function FAQ() {
   );
 }
 
+/* ---- Blog ---- */
+function Blog() {
+  const posts = [
+    {
+      tag: "Automatización",
+      title: "5 tareas que un agente IA puede hacer por vos desde hoy",
+      excerpt: "Responder consultas, agendar turnos, pedir reseñas, enviar recordatorios y calificar leads. Todo sin que vos muevas un dedo. Conocé cómo funciona en la práctica.",
+      date: "2 jun 2026",
+      readTime: "4 min",
+    },
+    {
+      tag: "WhatsApp",
+      title: "Por qué WhatsApp es el canal ideal para automatizar tu negocio",
+      excerpt: "El 90 % de los mensajes en WhatsApp se leen en menos de 3 minutos. Descubrí por qué los negocios que automatizan por este canal convierten más y gastan menos.",
+      date: "28 may 2026",
+      readTime: "5 min",
+    },
+    {
+      tag: "Casos de éxito",
+      title: "Cómo una clínica dental redujo los no-shows un 80 % con IA",
+      excerpt: "Con un agente de recordatorios y confirmación automática en WhatsApp, esta clínica de Buenos Aires recuperó 40 turnos por mes que antes se perdían sin aviso.",
+      date: "20 may 2026",
+      readTime: "6 min",
+    },
+  ];
+  return (
+    <section className="section" id="blog">
+      <div className="container">
+        <div className="section-label">Blog</div>
+        <h2 className="section-title">Aprendé. Aplicá. Crecé.</h2>
+        <p className="section-sub" style={{ marginBottom: 48 }}>Guías prácticas y casos reales sobre IA para negocios.</p>
+        <div className="blog-grid">
+          {posts.map((p, i) => (
+            <article className="blog-card" key={i}>
+              <div className="blog-card-body">
+                <span className="blog-tag">{p.tag}</span>
+                <h3 className="blog-title">{p.title}</h3>
+                <p className="blog-excerpt">{p.excerpt}</p>
+              </div>
+              <div className="blog-card-footer">
+                <span className="blog-meta">{p.date} · {p.readTime} de lectura</span>
+                <span className="blog-read-link">Leer artículo →</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 Object.assign(window, {
   PepinoMark, HeroCucumber,
   Nav, Hero, HowItWorks, Services, AgentCard, EltonCard,
   BenefitSections, WhyUs, Testimonials, FAQ,
-  CTABand, Footer, FloatingWhatsApp,
+  Blog, CTABand, Footer, FloatingWhatsApp,
 });
