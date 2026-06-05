@@ -86,7 +86,7 @@ function Hero({ onServices }) {
         <div className="hero-icon-wrap">
           <HeroCucumber />
         </div>
-        <h1>Tu negocio en<br /><em>piloto automático.</em></h1>
+        <h1>Contrata empleados-IA<br /><em>para tu WhatsApp.</em></h1>
         <p className="hero-lead">
           Contratá agentes de IA que trabajan en tu WhatsApp las 24 horas.
           Gestionan turnos, llenan tu agenda y cuidan tu reputación. Sin nóminas ni horarios.
