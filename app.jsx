@@ -23,6 +23,7 @@ function App() {
       <BenefitSections onServices={() => scrollTo("servicios")} />
       <WhyUs />
       <Testimonials />
+      <Clients />
       <FAQ />
       <Blog />
       <CTABand />

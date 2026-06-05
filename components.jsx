@@ -301,6 +301,102 @@ function Services() {
   );
 }
 
+/* ---- Client logos ---- */
+function LogoIlTrento() {
+  return (
+    <svg viewBox="0 0 100 58" width="100" height="58" fill="none">
+      <rect width="100" height="58" rx="7" fill="#C8102E"/>
+      <ellipse cx="50" cy="26" rx="36" ry="18" fill="white"/>
+      <text x="50" y="20" fontFamily="Georgia,serif" fontSize="9" fontStyle="italic" fill="#C8102E" textAnchor="middle" dominantBaseline="middle">il</text>
+      <text x="50" y="32" fontFamily="Georgia,serif" fontSize="12" fontWeight="700" fill="#C8102E" textAnchor="middle" dominantBaseline="middle" letterSpacing="1">Trento</text>
+      <rect x="21" y="48" width="12" height="4" rx="1" fill="#009246"/>
+      <rect x="33" y="48" width="14" height="4" rx="1" fill="white" fillOpacity="0.85"/>
+      <rect x="47" y="48" width="12" height="4" rx="1" fill="#CE2B37"/>
+    </svg>
+  );
+}
+
+function LogoLaTrentina() {
+  return (
+    <svg viewBox="0 0 60 70" width="48" height="56" fill="none">
+      <path d="M30 2L57 13V44Q57 63 30 68Q3 63 3 44V13Z" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" fill="rgba(255,255,255,0.04)"/>
+      <circle cx="30" cy="18" r="4.5" fill="white"/>
+      <ellipse cx="30" cy="35" rx="5.5" ry="9" fill="white"/>
+      <path d="M24 31 Q13 23 9 31 Q14 33 19 34 Q22 34 24 37Z" fill="white"/>
+      <path d="M36 31 Q47 23 51 31 Q46 33 41 34 Q38 34 36 37Z" fill="white"/>
+      <path d="M27 44 L25 50 M33 44 L35 50" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M25 50 L22 53 M25 50 L25 53 M25 50 L28 53" stroke="white" strokeWidth="1" strokeLinecap="round"/>
+      <path d="M35 50 L32 53 M35 50 L35 53 M35 50 L38 53" stroke="white" strokeWidth="1" strokeLinecap="round"/>
+      <text x="30" y="63" fontFamily="Arial,sans-serif" fontSize="4.8" fontWeight="700" fill="rgba(255,255,255,0.55)" textAnchor="middle" letterSpacing="0.4">LA TRENTINA</text>
+    </svg>
+  );
+}
+
+function LogoInfame() {
+  return (
+    <svg viewBox="0 0 150 48" width="150" height="48" fill="none">
+      <text x="75" y="34" fontFamily="'Arial Narrow',Arial,sans-serif" fontSize="32" fontWeight="900" fill="white" textAnchor="middle" dominantBaseline="auto" letterSpacing="6">INFAME</text>
+    </svg>
+  );
+}
+
+function LogoCaffeRoma() {
+  return (
+    <svg viewBox="0 0 100 58" width="100" height="58" fill="none">
+      <circle cx="50" cy="29" r="26" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" fill="none"/>
+      <circle cx="50" cy="29" r="20" stroke="rgba(255,255,255,0.25)" strokeWidth="0.7" fill="none"/>
+      <text x="50" y="24" fontFamily="Georgia,serif" fontSize="8" fill="rgba(255,255,255,0.85)" textAnchor="middle" dominantBaseline="middle" letterSpacing="2">CAFFÈ</text>
+      <text x="50" y="35" fontFamily="Georgia,serif" fontSize="10" fontWeight="700" fill="white" textAnchor="middle" dominantBaseline="middle" letterSpacing="1.5">ROMA</text>
+    </svg>
+  );
+}
+
+function LogoPalazzo() {
+  return (
+    <svg viewBox="0 0 110 48" width="110" height="48" fill="none">
+      <rect x="0" y="22" width="22" height="0.8" fill="rgba(255,255,255,0.3)"/>
+      <rect x="88" y="22" width="22" height="0.8" fill="rgba(255,255,255,0.3)"/>
+      <text x="55" y="14" fontFamily="Georgia,serif" fontSize="7" fill="rgba(255,255,255,0.45)" textAnchor="middle" dominantBaseline="middle" letterSpacing="3">RISTORANTE</text>
+      <text x="55" y="30" fontFamily="Georgia,serif" fontSize="20" fontWeight="700" fill="white" textAnchor="middle" dominantBaseline="middle" letterSpacing="2">Palazzo</text>
+    </svg>
+  );
+}
+
+function LogoBodegaSur() {
+  return (
+    <svg viewBox="0 0 110 58" width="110" height="58" fill="none">
+      <path d="M55 4 L102 30 L55 56 L8 30 Z" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" fill="rgba(255,255,255,0.03)"/>
+      <text x="55" y="25" fontFamily="Georgia,serif" fontSize="7.5" fill="rgba(255,255,255,0.55)" textAnchor="middle" dominantBaseline="middle" letterSpacing="1.5">BODEGA</text>
+      <text x="55" y="37" fontFamily="Georgia,serif" fontSize="11" fontWeight="700" fill="white" textAnchor="middle" dominantBaseline="middle" letterSpacing="2">SUR</text>
+    </svg>
+  );
+}
+
+const CLIENT_LOGOS = [
+  { id: "il-trento",    node: React.createElement(LogoIlTrento) },
+  { id: "la-trentina",  node: React.createElement(LogoLaTrentina) },
+  { id: "infame",       node: React.createElement(LogoInfame) },
+  { id: "caffe-roma",   node: React.createElement(LogoCaffeRoma) },
+  { id: "palazzo",      node: React.createElement(LogoPalazzo) },
+  { id: "bodega-sur",   node: React.createElement(LogoBodegaSur) },
+];
+
+function Clients() {
+  const doubled = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
+  return (
+    <section className="clients-section">
+      <p className="clients-label">Trabajan con nosotros</p>
+      <div className="clients-marquee">
+        <div className="clients-track">
+          {doubled.map((l, i) => (
+            <div className="client-logo" key={i}>{l.node}</div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---- CTA / Contact band ---- */
 function CTABand() {
   return (
@@ -696,6 +792,6 @@ function Blog() {
 Object.assign(window, {
   PepinoMark, HeroCucumber,
   Nav, Hero, HowItWorks, Services, AgentCard, EltonCard,
-  BenefitSections, WhyUs, Testimonials, FAQ,
+  BenefitSections, WhyUs, Testimonials, Clients, FAQ,
   Blog, CTABand, Footer, FloatingWhatsApp,
 });
