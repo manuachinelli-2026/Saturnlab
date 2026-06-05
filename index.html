@@ -206,9 +206,38 @@
   /* ---- Services ---- */
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     align-items: stretch;
+  }
+
+  /* ---- Carousel ---- */
+  .carousel-wrap { position: relative; }
+  .carousel-track {
+    display: flex; gap: 20px;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .carousel-track::-webkit-scrollbar { display: none; }
+  .carousel-track .service-card {
+    flex: 0 0 calc(33.333% - 14px); min-width: 280px;
+    scroll-snap-align: start;
+  }
+  .carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--bg-card); border: 1px solid var(--border-2);
+    color: var(--text-1); font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5; transition: all var(--dur) var(--ease);
+  }
+  .carousel-btn:hover { border-color: var(--green); color: var(--green); }
+  .carousel-btn--prev { left: -20px; }
+  .carousel-btn--next { right: -20px; }
+  @media (max-width: 860px) {
+    .carousel-track .service-card { flex: 0 0 85%; }
+    .carousel-btn { display: none; }
   }
 
   /* ---- Elton solo card (full-width) ---- */
@@ -610,7 +639,7 @@
 
   /* ---- Responsive ---- */
   @media (max-width: 860px) {
-    .services-grid { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+    .services-grid { grid-template-columns: 1fr; max-width: 500px; }
     .nav-links { display: none; }
     .nav-inner { display: flex; justify-content: space-between; }
     .hero { padding: 72px 0 64px; }

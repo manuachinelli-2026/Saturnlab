@@ -268,6 +268,14 @@ function AgentCard({ a }) {
 }
 
 function Services() {
+  const trackRef = React.useRef(null);
+  const scroll = (dir) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.querySelector('.service-card');
+    const w = card ? card.offsetWidth + 20 : 320;
+    track.scrollBy({ left: dir * w, behavior: 'smooth' });
+  };
   return (
     <section className="section" id="servicios">
       <div className="container">
@@ -277,9 +285,15 @@ function Services() {
           Como tener empleados especializados conectados a tu WhatsApp,
           disponibles 24 horas. Sin nóminas, sin bajas, sin días libres.
         </p>
-        <div className="services-grid">
+        <div className="services-grid" style={{ marginBottom: 20 }}>
           <EltonCard />
-          {AGENTS.map((a, i) => <AgentCard key={i} a={a} />)}
+        </div>
+        <div className="carousel-wrap">
+          <button className="carousel-btn carousel-btn--prev" onClick={() => scroll(-1)}>‹</button>
+          <div className="carousel-track" ref={trackRef}>
+            {AGENTS.map((a, i) => <AgentCard key={i} a={a} />)}
+          </div>
+          <button className="carousel-btn carousel-btn--next" onClick={() => scroll(1)}>›</button>
         </div>
       </div>
     </section>
