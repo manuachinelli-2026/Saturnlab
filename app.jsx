@@ -14,6 +14,7 @@ function App() {
     <React.Fragment>
       <Nav
         onServices={() => scrollTo("servicios")}
+        onBlog={()    => scrollTo("blog")}
         onContact={()  => scrollTo("contacto")}
       />
       <Hero onServices={() => scrollTo("servicios")} />
@@ -23,6 +24,7 @@ function App() {
       <WhyUs />
       <Testimonials />
       <FAQ />
+      <Blog />
       <CTABand />
       <Footer />
       <FloatingWhatsApp />
