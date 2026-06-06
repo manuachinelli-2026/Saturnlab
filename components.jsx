@@ -65,12 +65,11 @@ function Nav({ onServices, onContact, onBlog }) {
         </nav>
 
         <div className="nav-right">
-          <a
-            className="btn btn--green"
-            href={`https://wa.me/${WA}?text=${encodeURIComponent("Hola, me gustaría saber más sobre los agentes de Pepino AI")}`}
-            target="_blank" rel="noopener noreferrer"
-          >
-            Hablá con nosotros
+          <a className="btn btn--outline" href="https://pepino-app.vercel.app/">
+            Iniciar sesión
+          </a>
+          <a className="btn btn--green" href="https://pepino-app.vercel.app/">
+            Empezar gratis
           </a>
         </div>
       </div>
