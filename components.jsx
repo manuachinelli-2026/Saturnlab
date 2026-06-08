@@ -68,7 +68,7 @@ function Nav({ onServices, onContact, onBlog }) {
           <a className="btn btn--outline" href="https://pepino-app.vercel.app/">
             Iniciar sesión
           </a>
-          <a className="btn btn--green" href="https://pepino-app.vercel.app/">
+          <a className="btn btn--green" href="https://pepino-onboarding.vercel.app/">
             Empezar gratis
           </a>
         </div>
