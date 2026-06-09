@@ -65,10 +65,10 @@ function Nav({ onServices, onContact, onBlog }) {
         </nav>
 
         <div className="nav-right">
-          <a className="btn btn--outline" href="https://pepino-app.vercel.app/">
+          <a className="btn btn--outline" href="https://app.getpepino.com/">
             Iniciar sesión
           </a>
-          <a className="btn btn--green" href="https://pepino-onboarding.vercel.app/">
+          <a className="btn btn--green" href="https://onboarding.getpepino.com/">
             Empezar gratis
           </a>
         </div>
