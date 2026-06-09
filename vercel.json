@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/internal/business-plan/:path*",
+      "destination": "https://business-plan-8mhj.vercel.app/:path*"
+    },
+    {
+      "source": "/internal/designsystem/:path*",
+      "destination": "https://pepino-designsystem.vercel.app/:path*"
+    }
+  ]
+}
