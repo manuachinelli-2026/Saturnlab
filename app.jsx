@@ -1,7 +1,7 @@
 /* Saturno Web Studio — app */
 
 function App() {
-  const [currency, setCurrency] = React.useState({ code: 'EUR', rates: {} });
+  const [currency, setCurrency] = React.useState(null);
 
   React.useEffect(() => {
     Promise.all([
@@ -12,10 +12,11 @@ function App() {
                  : geo.country === 'ES' ? 'EUR'
                  : 'USD';
       setCurrency({ code, rates: ratesData.rates || {} });
-    }).catch(() => {/* mantener EUR por defecto si falla */});
+    }).catch(() => setCurrency({ code: 'USD', rates: {} }));
   }, []);
 
   function formatPrice(eurAmount) {
+    if (!currency) return '...';
     if (currency.code === 'EUR') return `${eurAmount} €`;
     if (currency.code === 'USD') return `USD ${Math.round(eurAmount * (currency.rates.USD || 1))}`;
     const rounded = Math.round(eurAmount * (currency.rates.ARS || 1) / 100) * 100;
