@@ -2,6 +2,8 @@
 
 const WA = "5491100000000"; // reemplazá con tu número de WhatsApp
 
+const CurrencyContext = React.createContext({ formatPrice: (eur) => `${eur} €` });
+
 /* ---- Pepino cucumber slice mark ---- */
 function PepinoMark({ size = 38 }) {
   const cx = size / 2;
@@ -120,11 +122,13 @@ const ELTON = {
     "Entrega garantizada en menos de 24 horas",
     "Lista para publicar con tu dominio",
   ],
-  price: "Desde 75 €",
+  priceEur: 75,
+  pricePrefix: "Desde ",
   priceNote: "pago único",
 };
 
 function EltonCard() {
+  const { formatPrice } = React.useContext(CurrencyContext);
   const waMsg = encodeURIComponent("Hola 👋 me interesa que Elton me haga mi sitio web. ¿Cómo funciona?");
   return (
     <div className="service-card service-card--solo service-card--featured">
@@ -138,7 +142,7 @@ function EltonCard() {
           <div className="solo-role">{ELTON.role}</div>
         </div>
         <div className="solo-price-block">
-          <div className="solo-price">{ELTON.price}</div>
+          <div className="solo-price">{ELTON.pricePrefix}{formatPrice(ELTON.priceEur)}</div>
           <div className="solo-price-note">{ELTON.priceNote}</div>
         </div>
         <a
@@ -175,7 +179,7 @@ const AGENTS = [
       "Recordatorios automáticos antes de cada turno",
       "Gestiona cambios y cancelaciones sin vos",
     ],
-    price: "95 €",
+    price: 95,
     priceNote: "al mes",
     featured: false,
   },
@@ -191,7 +195,7 @@ const AGENTS = [
       "Manda promociones personalizadas por WhatsApp",
       "Aumenta tu facturación sin esfuerzo extra",
     ],
-    price: "79 €",
+    price: 79,
     priceNote: "al mes",
     featured: true,
   },
@@ -207,7 +211,7 @@ const AGENTS = [
       "Gestiona el feedback de cada cliente",
       "Mejora tu puntuación online mes a mes",
     ],
-    price: "69 €",
+    price: 69,
     priceNote: "al mes",
     featured: false,
   },
@@ -223,13 +227,14 @@ const AGENTS = [
       "Comparte link de pago o medios de pago",
       "Genera la comanda lista para cocina",
     ],
-    price: "89 €",
+    price: 89,
     priceNote: "al mes",
     featured: false,
   },
 ];
 
 function AgentCard({ a }) {
+  const { formatPrice } = React.useContext(CurrencyContext);
   const waMsg = encodeURIComponent(`Hola 👋 me interesa contratar a ${a.name} (${a.role}). ¿Me pueden dar más información?`);
   return (
     <div className={`service-card${a.featured ? " service-card--featured" : ""}`}>
@@ -252,7 +257,7 @@ function AgentCard({ a }) {
       </ul>
       <div className="card-footer">
         <div className="card-price">
-          <span className="card-price-amount">{a.price}</span>
+          <span className="card-price-amount">{formatPrice(a.price)}</span>
           <span className="card-price-note">{a.priceNote}</span>
         </div>
         <a
@@ -789,6 +794,7 @@ function Blog() {
 }
 
 Object.assign(window, {
+  CurrencyContext,
   PepinoMark, HeroCucumber,
   Nav, Hero, HowItWorks, Services, AgentCard, EltonCard,
   BenefitSections, WhyUs, Testimonials, Clients, FAQ,
